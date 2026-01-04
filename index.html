@@ -24,7 +24,7 @@
         <div class="brandText">
           <h1>NJ Design &amp; Print — Costos de Producción</h1>
           <p class="smallMuted">346-213-5545 · njdesignprintllc.com</p>
-          <p class="smallMuted">Modo: <b>costo de material</b> (no precio al cliente)</p>
+          <p class="smallMuted">Modo: <b>costo de producción</b> (no precio al cliente)</p>
         </div>
       </div>
 
@@ -41,8 +41,7 @@
           <select id="quoteSelect">
             <option value="">— Selecciona —</option>
             <option value="tint">Commercial Windows Tint (Costo material)</option>
-            <option value="canvas">Canvas Banner (Costo material)</option>
-            <option value="perfs">Windows Perfs (próximamente)</option>
+            <option value="printing">Printing Cost (ft²)</option>
             <option value="decals">Decals (próximamente)</option>
           </select>
         </div>
@@ -64,7 +63,7 @@
       <div class="titleRow" id="viewTitle"></div>
 
       <!-- =======================
-           TINT
+           COMMERCIAL WINDOWS TINT
            ======================= -->
       <div class="view" id="view-tint" hidden>
 
@@ -194,171 +193,78 @@
       </div>
 
       <!-- =======================
-           CANVAS BANNER
+           PRINTING COST
            ======================= -->
-      <div class="view" id="view-canvas" hidden>
+      <div class="view" id="view-printing" hidden>
 
-        <div class="subTitle">1) Datos del rollo de Canvas</div>
+        <div class="subTitle">Printing Cost (precio por ft²)</div>
         <div class="materialBox">
-          <div><b>Fórmula:</b> costo/ft² = precio rollo ÷ ((ancho_in/12) × largo_ft)</div>
-          <div><b>Nota:</b> el largo del rollo aquí sí es editable (a diferencia de Tint).</div>
+          <div><b>Instrucción:</b> selecciona el material y escribe ancho/largo.</div>
+          <div>Si escribes en <b>pulgadas</b>, se convierte automáticamente a <b>pies cuadrados (ft²)</b>.</div>
         </div>
 
         <div class="row">
           <div>
-            <label>Ancho del rollo (in)</label>
-            <input id="canvasRollWidthIn" type="number" step="0.01" value="54" />
-          </div>
-          <div>
-            <label>Largo del rollo (ft)</label>
-            <input id="canvasRollLengthFt" type="number" step="0.01" value="150" />
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label>Precio del rollo (USD)</label>
-            <input id="canvasRollPrice" type="number" step="0.01" value="0" />
-          </div>
-          <div>
-            <label>Orientación (para minimizar material)</label>
-            <select id="canvasOrientation">
-              <option value="auto" selected>Auto (usa menos material)</option>
-              <option value="wAlongRoll">Ancho del banner va en el largo del rollo</option>
-              <option value="hAlongRoll">Alto del banner va en el largo del rollo</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="materialBox" id="canvasBaseSummary">
-          <div><b>Área base:</b> —</div>
-          <div><b>Costo/ft²:</b> —</div>
-        </div>
-
-        <div class="hr"></div>
-
-        <div class="subTitle">2) ¿Cómo quieres calcular?</div>
-        <div class="row">
-          <div>
-            <label>Método</label>
-            <select id="canvasMethod">
+            <label>Tipo de impresión</label>
+            <select id="printType">
               <option value="">— Selecciona —</option>
-              <option value="single">Un banner</option>
-              <option value="list">Lista de banners</option>
+              <option value="vinyl_basic">Vinil Adhesivo Básico — $2.50 / ft²</option>
+              <option value="vinyl_basic_lam">Vinil Adhesivo Básico Laminado — $3.50 / ft²</option>
+              <option value="microperf">Vinil Microperforado — $3.80 / ft²</option>
+              <option value="lona">Lona — $3.80 / ft²</option>
+              <option value="wrap">Wrap de Autos — $7.00 / ft²</option>
             </select>
           </div>
-          <div class="hint">
-            <span>Solo se mostrará la opción que elijas.</span>
+
+          <div>
+            <label>Precio seleccionado (USD / ft²)</label>
+            <input id="printRate" type="text" value="—" readonly />
           </div>
         </div>
 
-        <!-- SINGLE -->
-        <div id="canvas-single" hidden>
-          <div class="subTitle">Un banner</div>
-
-          <div class="row">
-            <div>
-              <label>Ancho del banner</label>
-              <input id="canvasW" type="number" step="0.01" value="48" />
-            </div>
-            <div>
-              <label>Alto del banner</label>
-              <input id="canvasH" type="number" step="0.01" value="72" />
-            </div>
+        <div class="row">
+          <div>
+            <label>Ancho</label>
+            <input id="printW" type="number" step="0.01" placeholder="Ej: 48" />
           </div>
-
-          <div class="row">
-            <div>
-              <label>Unidad (ancho/alto)</label>
-              <select id="canvasUnit">
-                <option value="in" selected>Pulgadas (in)</option>
-                <option value="ft">Pies (ft)</option>
-              </select>
-            </div>
-            <div>
-              <label>Cantidad (qty)</label>
-              <input id="canvasQty" type="number" step="1" value="1" />
-            </div>
-          </div>
-
-          <button class="primary" id="calcCanvasSingle">Calcular Canvas Banner</button>
-
-          <div class="result" id="canvasSingleResult" hidden>
-            <div class="kpi">
-              <div class="k"><div class="t">Largo usado (in)</div><div class="v" id="canvasLenIn">—</div></div>
-              <div class="k"><div class="t">Largo usado (ft)</div><div class="v" id="canvasLenFt">—</div></div>
-              <div class="k"><div class="t">Costo material</div><div class="v" id="canvasCost">$0.00</div></div>
-            </div>
-
-            <div class="kpi" style="margin-top:10px;">
-              <div class="k"><div class="t">Área material (ft²)</div><div class="v" id="canvasMatFt2">—</div></div>
-              <div class="k"><div class="t">Área banner (ft²)</div><div class="v" id="canvasBannerFt2">—</div></div>
-              <div class="k"><div class="t">Costo/ft²</div><div class="v" id="canvasCPP">—</div></div>
-            </div>
-
-            <div class="notes" id="canvasSingleNotes"></div>
+          <div>
+            <label>Largo</label>
+            <input id="printL" type="number" step="0.01" placeholder="Ej: 72" />
           </div>
         </div>
 
-        <!-- LIST -->
-        <div id="canvas-list" hidden>
-          <div class="subTitle">Lista de banners</div>
-
-          <div class="winGrid">
-            <div class="winRow winHead">
-              <div>Descripción</div>
-              <div>Ancho</div>
-              <div>Alto</div>
-              <div>Qty</div>
-              <div></div>
-            </div>
-            <div id="canvasList"></div>
+        <div class="row">
+          <div>
+            <label>Unidad (ancho/largo)</label>
+            <select id="printUnit">
+              <option value="in" selected>Pulgadas (in)</option>
+              <option value="ft">Pies (ft)</option>
+            </select>
           </div>
-
-          <div class="btnRow">
-            <button class="ghost" id="addCanvasRow">+ Agregar banner</button>
-            <button class="primary" id="calcCanvasList">Calcular lista</button>
+          <div>
+            <label>Cantidad (qty)</label>
+            <input id="printQty" type="number" step="1" value="1" />
           </div>
+        </div>
 
-          <div class="row" style="margin-top:10px;">
-            <div>
-              <label>Unidad (ancho/alto) para la lista</label>
-              <select id="canvasListUnit">
-                <option value="in" selected>Pulgadas (in)</option>
-                <option value="ft">Pies (ft)</option>
-              </select>
-            </div>
-            <div class="hint"><span></span></div>
+        <button class="primary" id="calcPrint">Calcular Printing Cost</button>
+
+        <div class="result" id="printResult" hidden>
+          <div class="kpi">
+            <div class="k"><div class="t">Área (1 pieza)</div><div class="v" id="printAreaOne">—</div></div>
+            <div class="k"><div class="t">Área total</div><div class="v" id="printAreaTotal">—</div></div>
+            <div class="k"><div class="t">Costo impresión</div><div class="v" id="printCost">$0.00</div></div>
           </div>
-
-          <div class="result" id="canvasListResult" hidden>
-            <div class="kpi">
-              <div class="k"><div class="t">Largo total (in)</div><div class="v" id="canvasListLenIn">—</div></div>
-              <div class="k"><div class="t">Largo total (ft)</div><div class="v" id="canvasListLenFt">—</div></div>
-              <div class="k"><div class="t">Costo material</div><div class="v" id="canvasListCost">$0.00</div></div>
-            </div>
-
-            <div class="kpi" style="margin-top:10px;">
-              <div class="k"><div class="t">Área material (ft²)</div><div class="v" id="canvasListMatFt2">—</div></div>
-              <div class="k"><div class="t">Área banners (ft²)</div><div class="v" id="canvasListBannerFt2">—</div></div>
-              <div class="k"><div class="t">Costo/ft²</div><div class="v" id="canvasListCPP">—</div></div>
-            </div>
-
-            <div class="notes" id="canvasListNotes"></div>
-          </div>
+          <div class="notes" id="printNotes"></div>
         </div>
 
       </div>
 
       <!-- =======================
-           PLACEHOLDERS
+           DECALS (placeholder)
            ======================= -->
-      <div class="view" id="view-perfs" hidden>
-        <div class="notice">Windows Perfs: próximo módulo.</div>
-      </div>
-
       <div class="view" id="view-decals" hidden>
-        <div class="notice">Decals: próximo módulo.</div>
+        <div class="notice">Decals: listo para definir el cálculo cuando tú me digas.</div>
       </div>
 
     </section>
