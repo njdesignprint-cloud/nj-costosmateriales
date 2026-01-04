@@ -42,7 +42,7 @@
             <option value="">— Selecciona —</option>
             <option value="tint">Commercial Windows Tint (Costo material)</option>
             <option value="printing">Printing Cost (ft²)</option>
-            <option value="decals">Decals (próximamente)</option>
+            <option value="decals">Decals (ORACAL 651 + RTape 4075RLA)</option>
           </select>
         </div>
 
@@ -207,7 +207,6 @@
           <div>
             <label>Tipo de impresión</label>
             <select id="printType">
-              <!-- ✅ ahora hay un seleccionado por defecto -->
               <option value="vinyl_basic" selected>Vinil Adhesivo Básico — $2.50 / ft²</option>
               <option value="vinyl_basic_lam">Vinil Adhesivo Básico Laminado — $3.50 / ft²</option>
               <option value="microperf">Vinil Microperforado — $3.80 / ft²</option>
@@ -261,10 +260,131 @@
       </div>
 
       <!-- =======================
-           DECALS (placeholder)
+           DECALS
            ======================= -->
       <div class="view" id="view-decals" hidden>
-        <div class="notice">Decals: listo para definir el cálculo cuando tú me digas.</div>
+
+        <div class="subTitle">Decals (ORACAL 651 + RTape 4075RLA)</div>
+        <div class="materialBox">
+          <div><b>Notas:</b> Precios de Grimco suelen requerir login (“sign in for pricing”). Tú pones el precio y la app lo guarda.</div>
+          <div>Trabajo en pulgadas o pies ⇒ siempre se convierte a <b>ft²</b> para el costo.</div>
+        </div>
+
+        <!-- Datos del trabajo -->
+        <div class="subTitle" style="margin-top:12px;">1) Datos del trabajo</div>
+        <div class="row">
+          <div>
+            <label>Ancho del decal</label>
+            <input id="decalW" type="number" step="0.01" value="4" />
+          </div>
+          <div>
+            <label>Alto del decal</label>
+            <input id="decalH" type="number" step="0.01" value="4" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Unidad (ancho/alto)</label>
+            <select id="decalUnit">
+              <option value="in" selected>Pulgadas (in)</option>
+              <option value="ft">Pies (ft)</option>
+            </select>
+          </div>
+          <div>
+            <label>Cantidad (qty)</label>
+            <input id="decalQty" type="number" step="1" value="10" />
+          </div>
+        </div>
+
+        <div class="materialBox" id="decalAreaBox">
+          <div><b>Área total (ft²):</b> —</div>
+          <div><b>Área total (in²):</b> —</div>
+        </div>
+
+        <div class="hr"></div>
+
+        <!-- ORACAL 651 -->
+        <div class="subTitle">2) Vinil — ORACAL 651</div>
+        <div class="row">
+          <div>
+            <label>Fuente</label>
+            <select id="oraSource">
+              <option value="home" selected>Tengo en casa</option>
+              <option value="buy">Comprar (Grimco)</option>
+            </select>
+          </div>
+          <div>
+            <label>Tamaño del rollo</label>
+            <select id="oraRoll"></select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Precio del rollo (USD)</label>
+            <input id="oraPrice" type="number" step="0.01" placeholder="Ej: 112.95" />
+          </div>
+          <div>
+            <label>Costo ORACAL (USD/ft²)</label>
+            <input id="oraCPP" type="text" value="—" readonly />
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <!-- RTape 4075RLA -->
+        <div class="subTitle">3) Transfer Tape — RTape 4075RLA</div>
+        <div class="row">
+          <div>
+            <label>Fuente</label>
+            <select id="tapeSource">
+              <option value="home" selected>Tengo en casa</option>
+              <option value="buy">Comprar (Grimco)</option>
+            </select>
+          </div>
+          <div>
+            <label>Tamaño del rollo</label>
+            <select id="tapeRoll"></select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Precio del rollo (USD)</label>
+            <input id="tapePrice" type="number" step="0.01" placeholder="Ej: 141.07" />
+          </div>
+          <div>
+            <label>Costo Tape (USD/ft²)</label>
+            <input id="tapeCPP" type="text" value="—" readonly />
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <!-- Shipping -->
+        <div class="subTitle">4) Shipping (si compras)</div>
+        <div class="row">
+          <div>
+            <label>Shipping total del pedido (USD)</label>
+            <input id="shipCost" type="number" step="0.01" value="0" />
+          </div>
+          <div class="hint">
+            <span>Se suma solo si seleccionas “Comprar” en vinil o tape.</span>
+          </div>
+        </div>
+
+        <button class="primary" id="calcDecals">Calcular Decals</button>
+
+        <div class="result" id="decalsResult" hidden>
+          <div class="kpi">
+            <div class="k"><div class="t">Área total</div><div class="v" id="decAreaFt2">—</div></div>
+            <div class="k"><div class="t">Costo material (uso)</div><div class="v" id="decMatCost">$0.00</div></div>
+            <div class="k"><div class="t">Total + shipping</div><div class="v" id="decTotal">$0.00</div></div>
+          </div>
+          <div class="notes" id="decalsNotes"></div>
+        </div>
+
       </div>
 
     </section>

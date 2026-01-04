@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const $ = (id) => document.getElementById(id);
 
-  // ====== Logo loader (prueba rutas + evita cache viejo) ======
+  // ====== Logo loader ======
   function loadLogo(imgEl) {
     if (!imgEl) return;
     const v = Date.now();
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tryNext();
   }
 
-  // ====== HELPERS ======
+  // ====== Helpers ======
   const statusBar = $("statusBar");
   function setStatus(msg) {
     if (!statusBar) return;
@@ -49,10 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return unit === "in" ? (len / 12) : len;
   }
 
-  function areaFt2FromInches(wIn, hIn) {
-    return (wIn * hIn) / 144;
-  }
-
   function escapeHtml(str) {
     return String(str).replace(/[&<>"']/g, (s) => ({
       "&": "&amp;",
@@ -63,10 +59,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }[s]));
   }
 
+  function rollAreaFt2(widthIn, lengthYd) {
+    // width in inches, length in yards (1yd = 3ft)
+    return (widthIn / 12) * (lengthYd * 3);
+  }
+
   // ===== INIT LOGO =====
   loadLogo($("brandLogo"));
 
-  // ====== COMMON UI ======
+  // ====== Common UI ======
   const quoteSelect = $("quoteSelect");
   const viewBox = $("viewBox");
   const viewTitle = $("viewTitle");
@@ -77,15 +78,16 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".view").forEach(v => v.hidden = true);
 
     // Tint
-    const methodUse = $("method-use");
-    const methodWins = $("method-wins");
-    if (methodUse) methodUse.hidden = true;
-    if (methodWins) methodWins.hidden = true;
-    if ($("useResult")) $("useResult").hidden = true;
-    if ($("winResult")) $("winResult").hidden = true;
+    $("method-use") && ($("method-use").hidden = true);
+    $("method-wins") && ($("method-wins").hidden = true);
+    $("useResult") && ($("useResult").hidden = true);
+    $("winResult") && ($("winResult").hidden = true);
 
     // Printing
-    if ($("printResult")) $("printResult").hidden = true;
+    $("printResult") && ($("printResult").hidden = true);
+
+    // Decals
+    $("decalsResult") && ($("decalsResult").hidden = true);
 
     setStatus("");
   }
@@ -109,26 +111,30 @@ document.addEventListener("DOMContentLoaded", () => {
       const titleMap = {
         tint: "Commercial Windows Tint — Costo de material",
         printing: "Printing Cost — Costo por ft²",
-        decals: "Decals — Próximamente",
+        decals: "Decals — ORACAL 651 + RTape 4075RLA",
       };
       viewTitle.innerHTML = `<b>${titleMap[mode] || mode}</b>`;
     }
 
     if (mode === "tint") {
-      if ($("tintMethod")) $("tintMethod").value = "";
-      if ($("method-use")) $("method-use").hidden = true;
-      if ($("method-wins")) $("method-wins").hidden = true;
+      $("tintMethod") && ($("tintMethod").value = "");
+      $("method-use") && ($("method-use").hidden = true);
+      $("method-wins") && ($("method-wins").hidden = true);
       renderTintBaseSummary();
       ensureDefaultWin();
     }
 
     if (mode === "printing") {
-      // ✅ Mantener un tipo seleccionado por defecto y mostrar precio siempre
-      if (printType && !printType.value) {
-        printType.value = "vinyl_basic";
-      }
+      if (printType && !printType.value) printType.value = "vinyl_basic";
       updatePrintRateUI();
-      if ($("printResult")) $("printResult").hidden = true;
+      $("printResult") && ($("printResult").hidden = true);
+    }
+
+    if (mode === "decals") {
+      initDecalsUI();
+      updateDecalAreasUI();
+      updateDecalsCPPUI();
+      $("decalsResult") && ($("decalsResult").hidden = true);
     }
   }
 
@@ -175,8 +181,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const v = $("tintMethod").value;
     $("method-use").hidden = (v !== "use");
     $("method-wins").hidden = (v !== "wins");
-    if ($("useResult")) $("useResult").hidden = true;
-    if ($("winResult")) $("winResult").hidden = true;
+    $("useResult") && ($("useResult").hidden = true);
+    $("winResult") && ($("winResult").hidden = true);
   });
 
   $("calcUse")?.addEventListener("click", () => {
@@ -252,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const hIn = clampMin(Number(row.querySelector(".winH")?.value || 0), 0.01);
       const qty = clampMin(Math.floor(Number(row.querySelector(".winQty")?.value || 1)), 1);
 
-      totalWinAreaFt2 += areaFt2FromInches(wIn, hIn) * qty;
+      totalWinAreaFt2 += ((wIn * hIn) / 144) * qty;
 
       const panels = Math.ceil(wIn / rollW);
       const linearForThisIn = (hIn * panels) * qty;
@@ -300,21 +306,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const key = printType?.value || "vinyl_basic";
     const rate = PRINT_RATES[key];
     if (!printRate) return;
-
-    printRate.value = (rate != null)
-      ? `${money(rate)} / ft²`
-      : "—";
+    printRate.value = (rate != null) ? `${money(rate)} / ft²` : "—";
   }
 
   printType?.addEventListener("change", () => {
     updatePrintRateUI();
-    if ($("printResult")) $("printResult").hidden = true;
+    $("printResult") && ($("printResult").hidden = true);
   });
 
   $("calcPrint")?.addEventListener("click", () => {
     const key = printType?.value || "vinyl_basic";
     const rate = PRINT_RATES[key];
-
     if (rate == null) return setStatus("⚠️ Selecciona un tipo de impresión.");
     setStatus("");
 
@@ -336,13 +338,222 @@ document.addEventListener("DOMContentLoaded", () => {
     $("printCost").textContent = money(cost);
 
     const typeLabel = printType.options[printType.selectedIndex]?.textContent || "—";
-
     $("printNotes").innerHTML =
       `Tipo: <b>${escapeHtml(typeLabel)}</b><br>` +
       `Medidas: <b>${w}</b> × <b>${l}</b> (${unit}) · Qty <b>${qty}</b><br>` +
-      `Convertido: <b>${wFt.toFixed(2)} ft</b> × <b>${lFt.toFixed(2)} ft</b><br>` +
       `Tarifa: <b>${money(rate)}/ft²</b><br>` +
       `Costo total: <b>${money(cost)}</b>`;
+  });
+
+  // =========================
+  // DECALS MODULE
+  // =========================
+  const ORA_ROLLS = [
+    { id: "ora_12_10", label: 'ORACAL 651 — 12" × 10 yd', widthIn: 12, lengthYd: 10 },
+    { id: "ora_15_10", label: 'ORACAL 651 — 15" × 10 yd', widthIn: 15, lengthYd: 10 },
+    { id: "ora_24_10", label: 'ORACAL 651 — 24" × 10 yd', widthIn: 24, lengthYd: 10 },
+    { id: "ora_30_10", label: 'ORACAL 651 — 30" × 10 yd', widthIn: 30, lengthYd: 10 },
+    { id: "ora_48_10", label: 'ORACAL 651 — 48" × 10 yd', widthIn: 48, lengthYd: 10 },
+    { id: "ora_60_10", label: 'ORACAL 651 — 60" × 10 yd', widthIn: 60, lengthYd: 10 },
+
+    { id: "ora_12_50", label: 'ORACAL 651 — 12" × 50 yd', widthIn: 12, lengthYd: 50 },
+    { id: "ora_15_50", label: 'ORACAL 651 — 15" × 50 yd', widthIn: 15, lengthYd: 50 },
+    { id: "ora_24_50", label: 'ORACAL 651 — 24" × 50 yd', widthIn: 24, lengthYd: 50 },
+    { id: "ora_30_50", label: 'ORACAL 651 — 30" × 50 yd', widthIn: 30, lengthYd: 50 },
+    { id: "ora_48_50", label: 'ORACAL 651 — 48" × 50 yd', widthIn: 48, lengthYd: 50 },
+    { id: "ora_60_50", label: 'ORACAL 651 — 60" × 50 yd', widthIn: 60, lengthYd: 50 },
+  ];
+
+  const TAPE_ROLLS = [
+    { id: "tp_12_100", label: 'RTape 4075RLA — 12" × 100 yd', widthIn: 12, lengthYd: 100 },
+    { id: "tp_15_100", label: 'RTape 4075RLA — 15" × 100 yd', widthIn: 15, lengthYd: 100 },
+    { id: "tp_18_100", label: 'RTape 4075RLA — 18" × 100 yd', widthIn: 18, lengthYd: 100 },
+    { id: "tp_24_100", label: 'RTape 4075RLA — 24" × 100 yd', widthIn: 24, lengthYd: 100 },
+    { id: "tp_30_100", label: 'RTape 4075RLA — 30" × 100 yd', widthIn: 30, lengthYd: 100 },
+    { id: "tp_48_100", label: 'RTape 4075RLA — 48" × 100 yd', widthIn: 48, lengthYd: 100 },
+    { id: "tp_54_100", label: 'RTape 4075RLA — 54" × 100 yd', widthIn: 54, lengthYd: 100 },
+    { id: "tp_60_100", label: 'RTape 4075RLA — 60" × 100 yd', widthIn: 60, lengthYd: 100 },
+  ];
+
+  function lsKey(prefix, source, rollId) {
+    return `nj_${prefix}_${source}_${rollId}`;
+  }
+
+  function fillSelect(selectEl, items, defaultId) {
+    if (!selectEl) return;
+    selectEl.innerHTML = "";
+    items.forEach(it => {
+      const opt = document.createElement("option");
+      opt.value = it.id;
+      opt.textContent = it.label;
+      selectEl.appendChild(opt);
+    });
+    selectEl.value = defaultId || (items[0]?.id || "");
+  }
+
+  function getDecalArea() {
+    const w = clampMin(safeNum($("decalW"), 0), 0.01);
+    const h = clampMin(safeNum($("decalH"), 0), 0.01);
+    const unit = $("decalUnit")?.value || "in";
+    const qty = clampMin(Math.floor(safeNum($("decalQty"), 1)), 1);
+
+    const wFt = lengthToFeet(w, unit);
+    const hFt = lengthToFeet(h, unit);
+
+    const areaOneFt2 = wFt * hFt;
+    const areaTotalFt2 = areaOneFt2 * qty;
+
+    const wIn = unit === "ft" ? (w * 12) : w;
+    const hIn = unit === "ft" ? (h * 12) : h;
+    const areaTotalIn2 = (wIn * hIn) * qty;
+
+    return { w, h, unit, qty, areaOneFt2, areaTotalFt2, areaTotalIn2 };
+  }
+
+  function updateDecalAreasUI() {
+    const box = $("decalAreaBox");
+    if (!box) return;
+    const a = getDecalArea();
+    box.innerHTML =
+      `<div><b>Área total (ft²):</b> ${a.areaTotalFt2.toFixed(4)} ft²</div>` +
+      `<div><b>Área total (in²):</b> ${a.areaTotalIn2.toFixed(2)} in²</div>`;
+  }
+
+  function getRollById(list, id) {
+    return list.find(x => x.id === id) || list[0];
+  }
+
+  function computeCPP(price, widthIn, lengthYd) {
+    const area = rollAreaFt2(widthIn, lengthYd);
+    if (area <= 0) return 0;
+    const p = clampMin(Number(price || 0), 0);
+    return p / area;
+  }
+
+  function updateDecalsCPPUI() {
+    // ORACAL
+    const oraSrc = $("oraSource")?.value || "home";
+    const oraId = $("oraRoll")?.value || ORA_ROLLS[0].id;
+    const oraRoll = getRollById(ORA_ROLLS, oraId);
+
+    // Tape
+    const tpSrc = $("tapeSource")?.value || "home";
+    const tpId = $("tapeRoll")?.value || TAPE_ROLLS[0].id;
+    const tpRoll = getRollById(TAPE_ROLLS, tpId);
+
+    // Load saved prices if inputs empty
+    const oraPriceEl = $("oraPrice");
+    const tapePriceEl = $("tapePrice");
+
+    if (oraPriceEl && (oraPriceEl.value === "" || oraPriceEl.value == null)) {
+      const saved = localStorage.getItem(lsKey("oraPrice", oraSrc, oraId));
+      if (saved != null) oraPriceEl.value = saved;
+    }
+    if (tapePriceEl && (tapePriceEl.value === "" || tapePriceEl.value == null)) {
+      const saved = localStorage.getItem(lsKey("tapePrice", tpSrc, tpId));
+      if (saved != null) tapePriceEl.value = saved;
+    }
+
+    const oraCPP = computeCPP(oraPriceEl?.value, oraRoll.widthIn, oraRoll.lengthYd);
+    const tpCPP = computeCPP(tapePriceEl?.value, tpRoll.widthIn, tpRoll.lengthYd);
+
+    $("oraCPP") && ($("oraCPP").value = oraCPP > 0 ? `${money(oraCPP)} / ft²` : "—");
+    $("tapeCPP") && ($("tapeCPP").value = tpCPP > 0 ? `${money(tpCPP)} / ft²` : "—");
+  }
+
+  function initDecalsUI() {
+    fillSelect($("oraRoll"), ORA_ROLLS, $("oraRoll")?.value || "ora_24_50");
+    fillSelect($("tapeRoll"), TAPE_ROLLS, $("tapeRoll")?.value || "tp_24_100");
+  }
+
+  // Events decals
+  ["decalW","decalH","decalQty"].forEach(id => {
+    $(id)?.addEventListener("input", () => {
+      updateDecalAreasUI();
+      $("decalsResult") && ($("decalsResult").hidden = true);
+    });
+  });
+  $("decalUnit")?.addEventListener("change", () => {
+    updateDecalAreasUI();
+    $("decalsResult") && ($("decalsResult").hidden = true);
+  });
+
+  ["oraSource","oraRoll","tapeSource","tapeRoll"].forEach(id => {
+    $(id)?.addEventListener("change", () => {
+      // Clear price fields so it reloads saved per (source+roll)
+      if (id === "oraSource" || id === "oraRoll") $("oraPrice") && ($("oraPrice").value = "");
+      if (id === "tapeSource" || id === "tapeRoll") $("tapePrice") && ($("tapePrice").value = "");
+      updateDecalsCPPUI();
+      $("decalsResult") && ($("decalsResult").hidden = true);
+    });
+  });
+
+  $("oraPrice")?.addEventListener("input", () => {
+    const src = $("oraSource")?.value || "home";
+    const rid = $("oraRoll")?.value || ORA_ROLLS[0].id;
+    localStorage.setItem(lsKey("oraPrice", src, rid), $("oraPrice").value || "");
+    updateDecalsCPPUI();
+  });
+
+  $("tapePrice")?.addEventListener("input", () => {
+    const src = $("tapeSource")?.value || "home";
+    const rid = $("tapeRoll")?.value || TAPE_ROLLS[0].id;
+    localStorage.setItem(lsKey("tapePrice", src, rid), $("tapePrice").value || "");
+    updateDecalsCPPUI();
+  });
+
+  $("shipCost")?.addEventListener("input", () => {
+    localStorage.setItem("nj_shipCost", $("shipCost").value || "0");
+    $("decalsResult") && ($("decalsResult").hidden = true);
+  });
+
+  $("calcDecals")?.addEventListener("click", () => {
+    setStatus("");
+
+    const a = getDecalArea();
+    updateDecalAreasUI();
+
+    const oraSrc = $("oraSource")?.value || "home";
+    const oraId = $("oraRoll")?.value || ORA_ROLLS[0].id;
+    const oraRoll = getRollById(ORA_ROLLS, oraId);
+    const oraPrice = clampMin(safeNum($("oraPrice"), 0), 0);
+
+    const tpSrc = $("tapeSource")?.value || "home";
+    const tpId = $("tapeRoll")?.value || TAPE_ROLLS[0].id;
+    const tpRoll = getRollById(TAPE_ROLLS, tpId);
+    const tpPrice = clampMin(safeNum($("tapePrice"), 0), 0);
+
+    const oraCPP = computeCPP(oraPrice, oraRoll.widthIn, oraRoll.lengthYd);
+    const tpCPP = computeCPP(tpPrice, tpRoll.widthIn, tpRoll.lengthYd);
+
+    if (oraCPP <= 0) return setStatus("⚠️ Pon el precio del rollo ORACAL 651 para calcular.");
+    if (tpCPP <= 0) return setStatus("⚠️ Pon el precio del rollo RTape 4075RLA para calcular.");
+
+    const matCost = a.areaTotalFt2 * (oraCPP + tpCPP);
+
+    const anyBuying = (oraSrc === "buy") || (tpSrc === "buy");
+    const ship = anyBuying ? clampMin(safeNum($("shipCost"), 0), 0) : 0;
+    const total = matCost + ship;
+
+    // UI outputs
+    $("decalsResult").hidden = false;
+    $("decAreaFt2").textContent = `${a.areaTotalFt2.toFixed(4)} ft²`;
+    $("decMatCost").textContent = money(matCost);
+    $("decTotal").textContent = money(total);
+
+    const noteShip = anyBuying
+      ? `Shipping incluido: <b>${money(ship)}</b>`
+      : `Shipping: <b>$0.00</b> (usando material en casa)`;
+
+    $("decalsNotes").innerHTML =
+      `<b>Trabajo:</b> ${a.w} × ${a.h} (${a.unit}) · Qty ${a.qty}<br>` +
+      `<b>Área total:</b> ${a.areaTotalFt2.toFixed(4)} ft²<br><br>` +
+
+      `<b>ORACAL 651</b> (${oraSrc === "buy" ? "Comprar" : "Casa"}): ${escapeHtml(oraRoll.label)} · Precio rollo ${money(oraPrice)} · CPP ${money(oraCPP)}/ft²<br>` +
+      `<b>RTape 4075RLA</b> (${tpSrc === "buy" ? "Comprar" : "Casa"}): ${escapeHtml(tpRoll.label)} · Precio rollo ${money(tpPrice)} · CPP ${money(tpCPP)}/ft²<br><br>` +
+
+      `${noteShip}<br>` +
+      `<b>Total estimado:</b> ${money(total)}`;
   });
 
   // ===== INIT =====
@@ -350,4 +561,13 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTintBaseSummary();
   ensureDefaultWin();
   updatePrintRateUI();
+
+  // Decals: restaurar shipping guardado
+  const savedShip = localStorage.getItem("nj_shipCost");
+  if ($("shipCost") && savedShip != null) $("shipCost").value = savedShip;
+
+  // Pre-carga selects (por si abres en decals primero)
+  initDecalsUI();
+  updateDecalAreasUI();
+  updateDecalsCPPUI();
 });
