@@ -123,13 +123,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (mode === "printing") {
-      // reset printing UI
-      if ($("printType")) $("printType").value = "";
-      if ($("printRate")) $("printRate").value = "—";
-      if ($("printW")) $("printW").value = "";
-      if ($("printL")) $("printL").value = "";
-      if ($("printUnit")) $("printUnit").value = "in";
-      if ($("printQty")) $("printQty").value = "1";
+      // ✅ Mantener un tipo seleccionado por defecto y mostrar precio siempre
+      if (printType && !printType.value) {
+        printType.value = "vinyl_basic";
+      }
+      updatePrintRateUI();
       if ($("printResult")) $("printResult").hidden = true;
     }
   }
@@ -143,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
   resetBtn?.addEventListener("click", resetAll);
 
   // =========================
-  // TINT MODULE (igual que antes)
+  // TINT MODULE
   // =========================
   const BASE_TINT_LENGTH_FT = 100;
 
@@ -299,10 +297,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const printRate = $("printRate");
 
   function updatePrintRateUI() {
-    const key = printType?.value || "";
+    const key = printType?.value || "vinyl_basic";
     const rate = PRINT_RATES[key];
     if (!printRate) return;
-    printRate.value = (rate != null) ? `${rate.toFixed(2)}` : "—";
+
+    printRate.value = (rate != null)
+      ? `${money(rate)} / ft²`
+      : "—";
   }
 
   printType?.addEventListener("change", () => {
@@ -311,7 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   $("calcPrint")?.addEventListener("click", () => {
-    const key = printType?.value || "";
+    const key = printType?.value || "vinyl_basic";
     const rate = PRINT_RATES[key];
 
     if (rate == null) return setStatus("⚠️ Selecciona un tipo de impresión.");
@@ -322,9 +323,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const unit = $("printUnit")?.value || "in";
     const qty = clampMin(Math.floor(safeNum($("printQty"), 1)), 1);
 
-    // Convert to feet
-    const wFt = (unit === "in") ? (w / 12) : w;
-    const lFt = (unit === "in") ? (l / 12) : l;
+    const wFt = lengthToFeet(w, unit);
+    const lFt = lengthToFeet(l, unit);
 
     const areaOne = wFt * lFt;
     const areaTotal = areaOne * qty;
