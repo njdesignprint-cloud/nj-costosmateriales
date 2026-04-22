@@ -1,411 +1,350 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>NJ Design & Print — Costos de Producción</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="app.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>NJ Design &amp; Print — Costos de Producción</title>
+<link href="styles.css" rel="stylesheet"/>
+<script defer="" src="app.js"></script>
 </head>
-
 <body>
-  <div class="wrap">
+<div class="wrap">
+<header class="top card"><div class="topRow"><div class="brand">
+<img alt="Logo NJ Design &amp; Print" class="logo" decoding="async" id="brandLogo" loading="eager" src="./images/logo.png"/>
+<div class="brandText">
+<h1 id="brandTitle">NJ Design &amp; Print — Costos de Producción</h1>
+<p class="smallMuted" id="brandContact">346-213-5545 · njdesignprintllc.com</p>
+<p class="smallMuted" id="brandModeText">Modo: <b>costo de producción</b> (no precio al cliente)</p>
+</div>
+</div><div aria-label="Language switch" class="langSwitch" id="langSwitch"><button class="langBtn active" id="langEs" type="button">ES</button><button class="langBtn" id="langEn" type="button">EN</button></div></div>
 
-    <header class="top card">
-      <div class="brand">
-        <img
-          class="logo"
-          id="brandLogo"
-          src="./images/logo.png"
-          alt="Logo NJ Design & Print"
-          loading="eager"
-          decoding="async"
-        />
-        <div class="brandText">
-          <h1>NJ Design &amp; Print — Costos de Producción</h1>
-          <p class="smallMuted">346-213-5545 · njdesignprintllc.com</p>
-          <p class="smallMuted">Modo: <b>costo de producción</b> (no precio al cliente)</p>
-        </div>
-      </div>
-
-      <div class="notice" id="statusBar" hidden></div>
-    </header>
-
-    <!-- SELECTOR PRINCIPAL -->
-    <section class="card">
-      <h2>¿Qué vas a calcular?</h2>
-
-      <div class="row">
-        <div>
-          <label>Opción</label>
-          <select id="quoteSelect">
-            <option value="">— Selecciona —</option>
-            <option value="tint">Commercial Windows Tint (Costo material)</option>
-            <option value="printing">Printing Cost (ft²)</option>
-            <option value="decals">Decals</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Nota (opcional)</label>
-          <input id="note" type="text" placeholder="Ej: Trabajo #23 / Cliente X" />
-        </div>
-      </div>
-
-      <div class="bar">
-        <span class="pill" id="currentMode">Modo: —</span>
-        <button id="resetBtn" class="ghost">Limpiar</button>
-      </div>
-    </section>
-
-    <!-- VISTA -->
-    <section class="card" id="viewBox" hidden>
-      <div class="titleRow" id="viewTitle"></div>
-
-      <!-- =======================
+<div class="notice" hidden="" id="statusBar"></div>
+</header>
+<!-- SELECTOR PRINCIPAL -->
+<section class="card">
+<h2 id="mainQuestionTitle">¿Qué vas a calcular?</h2>
+<div class="row">
+<div>
+<label id="quoteSelectLabel">Opción</label>
+<select id="quoteSelect">
+<option data-value="" id="quoteOptionEmpty" value="">— Selecciona —</option>
+<option data-value="tint" id="quoteOptionTint" value="tint">Commercial Windows Tint (Costo material)</option>
+<option data-value="printing" id="quoteOptionPrinting" value="printing">Printing Cost (ft²)</option>
+<option data-value="decals" id="quoteOptionDecals" value="decals">Decals</option>
+</select>
+</div>
+<div>
+<label id="noteLabel">Nota (opcional)</label>
+<input id="note" placeholder="Ej: Trabajo #23 / Cliente X" type="text"/>
+</div>
+</div>
+<div class="bar">
+<span class="pill" id="currentMode">Modo: —</span>
+<button class="ghost" id="resetBtn">Limpiar</button>
+</div>
+</section>
+<!-- VISTA -->
+<section class="card" hidden="" id="viewBox">
+<div class="titleRow" id="viewTitle"></div>
+<!-- =======================
            COMMERCIAL WINDOWS TINT
            ======================= -->
-      <div class="view" id="view-tint" hidden>
-
-        <div class="subTitle">Base (largo fijo)</div>
-        <div class="materialBox">
-          <div><b>Largo base:</b> 100 ft (fijo)</div>
-          <div><b>Fórmula:</b> costo/ft² = precio rollo ÷ ((ancho_in/12) × 100)</div>
-        </div>
-
-        <div class="subTitle" style="margin-top:12px;">1) Datos del rollo</div>
-        <div class="row">
-          <div>
-            <label>Ancho del rollo (in)</label>
-            <input id="rollWidthIn" type="number" step="0.01" value="60" />
-          </div>
-          <div>
-            <label>Precio del rollo (USD)</label>
-            <input id="rollPrice" type="number" step="0.01" value="350" />
-          </div>
-        </div>
-
-        <div class="materialBox" id="baseSummary">
-          <div><b>Área base:</b> —</div>
-          <div><b>Costo/ft²:</b> —</div>
-        </div>
-
-        <div class="hr"></div>
-
-        <div class="subTitle">2) ¿Cómo quieres calcular?</div>
-        <div class="row">
-          <div>
-            <label>Método</label>
-            <select id="tintMethod">
-              <option value="">— Selecciona —</option>
-              <option value="use">Calcular material usado (corte)</option>
-              <option value="wins">Calcular por ventanas</option>
-            </select>
-          </div>
-          <div class="hint">
-            <span>Solo se mostrará la opción que elijas.</span>
-          </div>
-        </div>
-
-        <!-- MÉTODO: USO DIRECTO -->
-        <div id="method-use" hidden>
-          <div class="subTitle">Material que vas a usar (del rollo)</div>
-
-          <div class="row">
-            <div>
-              <label>Ancho usado (in)</label>
-              <input id="useWidthIn" type="number" step="0.01" value="60" />
-            </div>
-            <div>
-              <label>Largo usado</label>
-              <input id="useLength" type="number" step="0.01" value="48" />
-            </div>
-          </div>
-
-          <div class="row">
-            <div>
-              <label>Unidad del largo usado</label>
-              <select id="useLengthUnit">
-                <option value="in" selected>Pulgadas (in)</option>
-                <option value="ft">Pies (ft)</option>
-              </select>
-            </div>
-            <div>
-              <label>Cantidad (piezas)</label>
-              <input id="useQty" type="number" step="1" value="1" />
-            </div>
-          </div>
-
-          <button class="primary" id="calcUse">Calcular costo del material usado</button>
-
-          <div class="result" id="useResult" hidden>
-            <div class="kpi">
-              <div class="k"><div class="t">Área total</div><div class="v" id="useArea">—</div></div>
-              <div class="k"><div class="t">Costo material</div><div class="v" id="useCost">$0.00</div></div>
-              <div class="k"><div class="t">Costo/ft²</div><div class="v" id="useCPP">—</div></div>
-            </div>
-            <div class="notes" id="useNotes"></div>
-          </div>
-        </div>
-
-        <!-- MÉTODO: VENTANAS -->
-        <div id="method-wins" hidden>
-          <div class="subTitle">Ventanas (calcula pulgadas de material + ft²)</div>
-
-          <div class="materialBox">
-            <div><b>Cómo se calcula:</b> asume que cada ventana consume el largo según su <b>alto</b>.</div>
-            <div>Si una ventana es más ancha que el rollo ⇒ se paneliza y consume <b>alto × paneles</b>.</div>
-          </div>
-
-          <div class="winGrid">
-            <div class="winRow winHead">
-              <div>Descripción</div>
-              <div>Ancho (in)</div>
-              <div>Alto (in)</div>
-              <div>Qty</div>
-              <div></div>
-            </div>
-            <div id="winList"></div>
-          </div>
-
-          <div class="btnRow">
-            <button class="ghost" id="addWin">+ Agregar ventana</button>
-            <button class="primary" id="calcWins">Calcular material (pulgadas + ft²)</button>
-          </div>
-
-          <div class="result" id="winResult" hidden>
-            <div class="kpi">
-              <div class="k"><div class="t">Largo total (in)</div><div class="v" id="winLenIn">—</div></div>
-              <div class="k"><div class="t">Largo total (ft)</div><div class="v" id="winLenFt">—</div></div>
-              <div class="k"><div class="t">Costo material</div><div class="v" id="winCost">$0.00</div></div>
-            </div>
-
-            <div class="kpi" style="margin-top:10px;">
-              <div class="k"><div class="t">Área material (ft²)</div><div class="v" id="winMatFt2">—</div></div>
-              <div class="k"><div class="t">Área ventanas (ft²)</div><div class="v" id="winWinFt2">—</div></div>
-              <div class="k"><div class="t">Costo/ft²</div><div class="v" id="winCPP">—</div></div>
-            </div>
-
-            <div class="notes" id="winNotes"></div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- =======================
+<div class="view" hidden="" id="view-tint">
+<div class="subTitle" id="tintBaseTitle">Base (largo fijo)</div>
+<div class="materialBox" id="tintBaseInfo">
+<div><b>Largo base:</b> 100 ft (fijo)</div>
+<div><b>Fórmula:</b> costo/ft² = precio rollo ÷ ((ancho_in/12) × 100)</div>
+</div>
+<div class="subTitle" id="tintRollDataTitle" style="margin-top:12px;">1) Datos del rollo</div>
+<div class="row">
+<div>
+<label id="rollWidthInLabel">Ancho del rollo (in)</label>
+<input id="rollWidthIn" step="0.01" type="number" value="60"/>
+</div>
+<div>
+<label id="rollPriceLabel">Precio del rollo (USD)</label>
+<input id="rollPrice" step="0.01" type="number" value="350"/>
+</div>
+</div>
+<div class="materialBox" id="baseSummary">
+<div><b>Área base:</b> —</div>
+<div><b>Costo/ft²:</b> —</div>
+</div>
+<div class="hr"></div>
+<div class="subTitle" id="tintCalcMethodTitle">2) ¿Cómo quieres calcular?</div>
+<div class="row">
+<div>
+<label id="tintMethodLabel">Método</label>
+<select id="tintMethod">
+<option id="tintMethodEmpty" value="">— Selecciona —</option>
+<option id="tintMethodUse" value="use">Calcular material usado (corte)</option>
+<option id="tintMethodWins" value="wins">Calcular por ventanas</option>
+</select>
+</div>
+<div class="hint">
+<span id="tintMethodHint">Solo se mostrará la opción que elijas.</span>
+</div>
+</div>
+<!-- MÉTODO: USO DIRECTO -->
+<div hidden="" id="method-use">
+<div class="subTitle" id="tintUseTitle">Material que vas a usar (del rollo)</div>
+<div class="row">
+<div>
+<label id="useWidthInLabel">Ancho usado (in)</label>
+<input id="useWidthIn" step="0.01" type="number" value="60"/>
+</div>
+<div>
+<label id="useLengthLabel">Largo usado</label>
+<input id="useLength" step="0.01" type="number" value="48"/>
+</div>
+</div>
+<div class="row">
+<div>
+<label id="useLengthUnitLabel">Unidad del largo usado</label>
+<select id="useLengthUnit">
+<option id="useLengthUnitIn" selected="" value="in">Pulgadas (in)</option>
+<option id="useLengthUnitFt" value="ft">Pies (ft)</option>
+</select>
+</div>
+<div>
+<label id="useQtyLabel">Cantidad (piezas)</label>
+<input id="useQty" step="1" type="number" value="1"/>
+</div>
+</div>
+<button class="primary" id="calcUse">Calcular costo del material usado</button>
+<div class="result" hidden="" id="useResult">
+<div class="kpi">
+<div class="k"><div class="t" id="useAreaLabel">Área total</div><div class="v" id="useArea">—</div></div>
+<div class="k"><div class="t" id="useCostLabel">Costo material</div><div class="v" id="useCost">$0.00</div></div>
+<div class="k"><div class="t" id="useCppLabel">Costo/ft²</div><div class="v" id="useCPP">—</div></div>
+</div>
+<div class="notes" id="useNotes"></div>
+</div>
+</div>
+<!-- MÉTODO: VENTANAS -->
+<div hidden="" id="method-wins">
+<div class="subTitle" id="tintWinsTitle">Ventanas (calcula pulgadas de material + ft²)</div>
+<div class="materialBox" id="tintWinsInfo">
+<div><b>Cómo se calcula:</b> asume que cada ventana consume el largo según su <b>alto</b>.</div>
+<div>Si una ventana es más ancha que el rollo ⇒ se paneliza y consume <b>alto × paneles</b>.</div>
+</div>
+<div class="winGrid">
+<div class="winRow winHead">
+<div id="winHeadDesc">Descripción</div>
+<div id="winHeadWidth">Ancho (in)</div>
+<div id="winHeadHeight">Alto (in)</div>
+<div id="winHeadQty">Qty</div>
+<div></div>
+</div>
+<div id="winList"></div>
+</div>
+<div class="btnRow">
+<button class="ghost" id="addWin">+ Agregar ventana</button>
+<button class="primary" id="calcWins">Calcular material (pulgadas + ft²)</button>
+</div>
+<div class="result" hidden="" id="winResult">
+<div class="kpi">
+<div class="k"><div class="t" id="winLenInLabel">Largo total (in)</div><div class="v" id="winLenIn">—</div></div>
+<div class="k"><div class="t" id="winLenFtLabel">Largo total (ft)</div><div class="v" id="winLenFt">—</div></div>
+<div class="k"><div class="t" id="winCostLabel">Costo material</div><div class="v" id="winCost">$0.00</div></div>
+</div>
+<div class="kpi" style="margin-top:10px;">
+<div class="k"><div class="t" id="winMatFt2Label">Área material (ft²)</div><div class="v" id="winMatFt2">—</div></div>
+<div class="k"><div class="t" id="winWinFt2Label">Área ventanas (ft²)</div><div class="v" id="winWinFt2">—</div></div>
+<div class="k"><div class="t" id="winCppLabel">Costo/ft²</div><div class="v" id="winCPP">—</div></div>
+</div>
+<div class="notes" id="winNotes"></div>
+</div>
+</div>
+</div>
+<!-- =======================
            PRINTING COST
            ======================= -->
-      <div class="view" id="view-printing" hidden>
-
-        <div class="subTitle">Printing Cost (precio por ft²)</div>
-        <div class="materialBox">
-          <div><b>Instrucción:</b> selecciona el material y escribe ancho/largo.</div>
-          <div>Si escribes en <b>pulgadas</b>, se convierte automáticamente a <b>pies cuadrados (ft²)</b>.</div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label>Tipo de impresión</label>
-            <select id="printType">
-              <option value="vinyl_basic" selected>Vinil Adhesivo Básico — $2.50 / ft²</option>
-              <option value="vinyl_basic_lam">Vinil Adhesivo Básico Laminado — $3.50 / ft²</option>
-              <option value="microperf">Vinil Microperforado — $3.80 / ft²</option>
-              <option value="lona">Lona — $3.80 / ft²</option>
-              <option value="wrap">Wrap de Autos — $7.00 / ft²</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Precio seleccionado (USD / ft²)</label>
-            <input id="printRate" type="text" value="—" readonly />
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label>Ancho</label>
-            <input id="printW" type="number" step="0.01" placeholder="Ej: 48" />
-          </div>
-          <div>
-            <label>Largo</label>
-            <input id="printL" type="number" step="0.01" placeholder="Ej: 72" />
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label>Unidad (ancho/largo)</label>
-            <select id="printUnit">
-              <option value="in" selected>Pulgadas (in)</option>
-              <option value="ft">Pies (ft)</option>
-            </select>
-          </div>
-          <div>
-            <label>Cantidad (qty)</label>
-            <input id="printQty" type="number" step="1" value="1" />
-          </div>
-        </div>
-
-        <button class="primary" id="calcPrint">Calcular Printing Cost</button>
-
-        <div class="result" id="printResult" hidden>
-          <div class="kpi">
-            <div class="k"><div class="t">Área (1 pieza)</div><div class="v" id="printAreaOne">—</div></div>
-            <div class="k"><div class="t">Área total</div><div class="v" id="printAreaTotal">—</div></div>
-            <div class="k"><div class="t">Costo impresión</div><div class="v" id="printCost">$0.00</div></div>
-          </div>
-          <div class="notes" id="printNotes"></div>
-        </div>
-
-      </div>
-
-      <!-- =======================
+<div class="view" hidden="" id="view-printing">
+<div class="subTitle" id="printingTitle">Printing Cost (precio por ft²)</div>
+<div class="materialBox" id="printingInfo">
+<div><b>Instrucción:</b> selecciona el material y escribe ancho/largo.</div>
+<div>Si escribes en <b>pulgadas</b>, se convierte automáticamente a <b>pies cuadrados (ft²)</b>.</div>
+</div>
+<div class="row">
+<div>
+<label id="printTypeLabel">Tipo de impresión</label>
+<select id="printType">
+<option id="printTypeBasic" selected="" value="vinyl_basic">Vinil Adhesivo Básico — $2.50 / ft²</option>
+<option id="printTypeLam" value="vinyl_basic_lam">Vinil Adhesivo Básico Laminado — $3.50 / ft²</option>
+<option id="printTypeMicroperf" value="microperf">Vinil Microperforado — $3.80 / ft²</option>
+<option id="printTypeBanner" value="lona">Lona — $3.80 / ft²</option>
+<option id="printTypeWrap" value="wrap">Wrap de Autos — $7.00 / ft²</option>
+</select>
+</div>
+<div>
+<label id="printRateLabel">Precio seleccionado (USD / ft²)</label>
+<input id="printRate" readonly="" type="text" value="—"/>
+</div>
+</div>
+<div class="row">
+<div>
+<label id="printWLabel">Ancho</label>
+<input id="printW" placeholder="Ej: 48" step="0.01" type="number"/>
+</div>
+<div>
+<label id="printLLabel">Largo</label>
+<input id="printL" placeholder="Ej: 72" step="0.01" type="number"/>
+</div>
+</div>
+<div class="row">
+<div>
+<label id="printUnitLabel">Unidad (ancho/largo)</label>
+<select id="printUnit">
+<option id="printUnitIn" selected="" value="in">Pulgadas (in)</option>
+<option id="printUnitFt" value="ft">Pies (ft)</option>
+</select>
+</div>
+<div>
+<label id="printQtyLabel">Cantidad (qty)</label>
+<input id="printQty" step="1" type="number" value="1"/>
+</div>
+</div>
+<button class="primary" id="calcPrint">Calcular Printing Cost</button>
+<div class="result" hidden="" id="printResult">
+<div class="kpi">
+<div class="k"><div class="t" id="printAreaOneLabel">Área (1 pieza)</div><div class="v" id="printAreaOne">—</div></div>
+<div class="k"><div class="t" id="printAreaTotalLabel">Área total</div><div class="v" id="printAreaTotal">—</div></div>
+<div class="k"><div class="t" id="printCostLabel">Costo impresión</div><div class="v" id="printCost">$0.00</div></div>
+</div>
+<div class="notes" id="printNotes"></div>
+</div>
+</div>
+<!-- =======================
            DECALS
            ======================= -->
-      <div class="view" id="view-decals" hidden>
-
-        <div class="subTitle">Decals</div>
-        <div class="materialBox">
-          <div><b>Nota:</b> tú pones el precio del rollo y la app lo guarda para ese tamaño.</div>
-          <div>Si compras, puedes agregar shipping (opcional).</div>
-        </div>
-
-        <!-- Tipo de material -->
-        <div class="subTitle" style="margin-top:12px;">0) Materiales</div>
-        <div class="row">
-          <div>
-            <label>Tipo de vinil</label>
-            <select id="vinylType">
-              <option value="orafol651" selected>ORAFOL 651</option>
-            </select>
-          </div>
-          <div>
-            <label>Papel transfer</label>
-            <select id="tapeType">
-              <option value="rtape4075rla" selected>RTape 4075RLA</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Datos del trabajo -->
-        <div class="subTitle" style="margin-top:12px;">1) Datos del trabajo</div>
-        <div class="row">
-          <div>
-            <label>Ancho del decal</label>
-            <input id="decalW" type="number" step="0.01" value="4" />
-          </div>
-          <div>
-            <label>Alto del decal</label>
-            <input id="decalH" type="number" step="0.01" value="4" />
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label>Unidad (ancho/alto)</label>
-            <select id="decalUnit">
-              <option value="in" selected>Pulgadas (in)</option>
-              <option value="ft">Pies (ft)</option>
-            </select>
-          </div>
-          <div>
-            <label>Cantidad (qty)</label>
-            <input id="decalQty" type="number" step="1" value="10" />
-          </div>
-        </div>
-
-        <div class="materialBox" id="decalAreaBox">
-          <div><b>Área total (ft²):</b> —</div>
-          <div><b>Área total (in²):</b> —</div>
-        </div>
-
-        <div class="hr"></div>
-
-        <!-- ORAFOL 651 -->
-        <div class="subTitle">2) Vinil (ORAFOL 651)</div>
-        <div class="row">
-          <div>
-            <label>Fuente</label>
-            <select id="oraSource">
-              <option value="home" selected>Tengo en casa</option>
-              <option value="buy">Comprar</option>
-            </select>
-          </div>
-          <div>
-            <label>Tamaño del rollo</label>
-            <select id="oraRoll"></select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label>Precio del rollo (USD)</label>
-            <input id="oraPrice" type="number" step="0.01" placeholder="Ej: 112.95" />
-          </div>
-          <div>
-            <label>Costo vinil (USD/ft²)</label>
-            <input id="oraCPP" type="text" value="—" readonly />
-          </div>
-        </div>
-
-        <div class="hr"></div>
-
-        <!-- RTape 4075RLA -->
-        <div class="subTitle">3) Transfer (RTape 4075RLA)</div>
-        <div class="row">
-          <div>
-            <label>Fuente</label>
-            <select id="tapeSource">
-              <option value="home" selected>Tengo en casa</option>
-              <option value="buy">Comprar</option>
-            </select>
-          </div>
-          <div>
-            <label>Tamaño del rollo</label>
-            <select id="tapeRoll"></select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label>Precio del rollo (USD)</label>
-            <input id="tapePrice" type="number" step="0.01" placeholder="Ej: 141.07" />
-          </div>
-          <div>
-            <label>Costo transfer (USD/ft²)</label>
-            <input id="tapeCPP" type="text" value="—" readonly />
-          </div>
-        </div>
-
-        <div class="hr"></div>
-
-        <!-- Shipping -->
-        <div class="subTitle">4) Shipping (si compras)</div>
-        <div class="row">
-          <div>
-            <label>Shipping total del pedido (USD)</label>
-            <input id="shipCost" type="number" step="0.01" value="0" />
-          </div>
-          <div class="hint">
-            <span>Se suma solo si seleccionas “Comprar” en vinil o transfer.</span>
-          </div>
-        </div>
-
-        <button class="primary" id="calcDecals">Calcular Decals</button>
-
-        <div class="result" id="decalsResult" hidden>
-          <div class="kpi">
-            <div class="k"><div class="t">Área total</div><div class="v" id="decAreaFt2">—</div></div>
-            <div class="k"><div class="t">Costo material (uso)</div><div class="v" id="decMatCost">$0.00</div></div>
-            <div class="k"><div class="t">Total + shipping</div><div class="v" id="decTotal">$0.00</div></div>
-          </div>
-          <div class="notes" id="decalsNotes"></div>
-        </div>
-
-      </div>
-
-    </section>
-
-  </div>
+<div class="view" hidden="" id="view-decals">
+<div class="subTitle" id="decalsTitle">Decals</div>
+<div class="materialBox" id="decalsIntro">
+<div><b>Nota:</b> tú pones el precio del rollo y la app lo guarda para ese tamaño.</div>
+<div>Si compras, puedes agregar shipping (opcional).</div>
+</div>
+<!-- Tipo de material -->
+<div class="subTitle" id="decalsMaterialsTitle" style="margin-top:12px;">0) Materiales</div>
+<div class="row">
+<div>
+<label id="vinylTypeLabel">Tipo de vinil</label>
+<select id="vinylType">
+<option selected="" value="orafol651">ORAFOL 651</option>
+</select>
+</div>
+<div>
+<label id="tapeTypeLabel">Papel transfer</label>
+<select id="tapeType">
+<option selected="" value="rtape4075rla">RTape 4075RLA</option>
+</select>
+</div>
+</div>
+<!-- Datos del trabajo -->
+<div class="subTitle" id="decalsJobTitle" style="margin-top:12px;">1) Datos del trabajo</div>
+<div class="row">
+<div>
+<label id="decalWLabel">Ancho del decal</label>
+<input id="decalW" step="0.01" type="number" value="4"/>
+</div>
+<div>
+<label id="decalHLabel">Alto del decal</label>
+<input id="decalH" step="0.01" type="number" value="4"/>
+</div>
+</div>
+<div class="row">
+<div>
+<label id="decalUnitLabel">Unidad (ancho/alto)</label>
+<select id="decalUnit">
+<option id="decalUnitIn" selected="" value="in">Pulgadas (in)</option>
+<option id="decalUnitFt" value="ft">Pies (ft)</option>
+</select>
+</div>
+<div>
+<label id="decalQtyLabel">Cantidad (qty)</label>
+<input id="decalQty" step="1" type="number" value="10"/>
+</div>
+</div>
+<div class="materialBox" id="decalAreaBox">
+<div><b>Área total (ft²):</b> —</div>
+<div><b>Área total (in²):</b> —</div>
+</div>
+<div class="hr"></div>
+<!-- ORAFOL 651 -->
+<div class="subTitle" id="oraTitle">2) Vinil (ORAFOL 651)</div>
+<div class="row">
+<div>
+<label id="oraSourceLabel">Fuente</label>
+<select id="oraSource">
+<option id="oraSourceHome" selected="" value="home">Tengo en casa</option>
+<option id="oraSourceBuy" value="buy">Comprar</option>
+</select>
+</div>
+<div>
+<label id="oraRollLabel">Tamaño del rollo</label>
+<select id="oraRoll"></select>
+</div>
+</div>
+<div class="row">
+<div>
+<label id="oraPriceLabel">Precio del rollo (USD)</label>
+<input id="oraPrice" placeholder="Ej: 112.95" step="0.01" type="number"/>
+</div>
+<div>
+<label id="oraCppLabel">Costo vinil (USD/ft²)</label>
+<input id="oraCPP" readonly="" type="text" value="—"/>
+</div>
+</div>
+<div class="hr"></div>
+<!-- RTape 4075RLA -->
+<div class="subTitle" id="tapeTitle">3) Transfer (RTape 4075RLA)</div>
+<div class="row">
+<div>
+<label id="tapeSourceLabel">Fuente</label>
+<select id="tapeSource">
+<option id="tapeSourceHome" selected="" value="home">Tengo en casa</option>
+<option id="tapeSourceBuy" value="buy">Comprar</option>
+</select>
+</div>
+<div>
+<label id="tapeRollLabel">Tamaño del rollo</label>
+<select id="tapeRoll"></select>
+</div>
+</div>
+<div class="row">
+<div>
+<label id="tapePriceLabel">Precio del rollo (USD)</label>
+<input id="tapePrice" placeholder="Ej: 141.07" step="0.01" type="number"/>
+</div>
+<div>
+<label id="tapeCppLabel">Costo transfer (USD/ft²)</label>
+<input id="tapeCPP" readonly="" type="text" value="—"/>
+</div>
+</div>
+<div class="hr"></div>
+<!-- Shipping -->
+<div class="subTitle" id="shippingTitle">4) Shipping (si compras)</div>
+<div class="row">
+<div>
+<label id="shipCostLabel">Shipping total del pedido (USD)</label>
+<input id="shipCost" step="0.01" type="number" value="0"/>
+</div>
+<div class="hint">
+<span id="shippingHint">Se suma solo si seleccionas “Comprar” en vinil o transfer.</span>
+</div>
+</div>
+<button class="primary" id="calcDecals">Calcular Decals</button>
+<div class="result" hidden="" id="decalsResult">
+<div class="kpi">
+<div class="k"><div class="t" id="decAreaFt2Label">Área total</div><div class="v" id="decAreaFt2">—</div></div>
+<div class="k"><div class="t" id="decMatCostLabel">Costo material (uso)</div><div class="v" id="decMatCost">$0.00</div></div>
+<div class="k"><div class="t" id="decTotalLabel">Total + shipping</div><div class="v" id="decTotal">$0.00</div></div>
+</div>
+<div class="notes" id="decalsNotes"></div>
+</div>
+</div>
+</section>
+</div>
 </body>
 </html>

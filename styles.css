@@ -395,3 +395,54 @@ button:focus{
 
 /* Small polish */
 .view{ position: relative; }
+
+
+/* Header row + language switch */
+.topRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.langSwitch{
+  display:inline-flex;
+  align-items:center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(4, 7, 5, 0.45);
+  box-shadow: var(--shadow2);
+}
+
+.langBtn{
+  min-width: 52px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: rgba(232,243,234,0.88);
+}
+
+.langBtn:hover{
+  border-color: rgba(166,255,77,0.22);
+  box-shadow: none;
+}
+
+.langBtn.active{
+  background: linear-gradient(180deg, var(--lime), var(--lime2));
+  color: #071007;
+  box-shadow: 0 10px 18px rgba(166,255,77,0.20), 0 12px 26px rgba(0,0,0,0.28);
+}
+
+@media (max-width: 720px){
+  .topRow{
+    align-items:flex-start;
+  }
+  .langSwitch{
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
