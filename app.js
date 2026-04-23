@@ -344,6 +344,96 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 };
 
+I18N.es.modes.coroplast = "Coroplast Printing";
+I18N.es.modeTitles.coroplast = "Coroplast Printing — Costo interno";
+I18N.es.status.coroplastSize = "⚠️ Revisa las medidas del coroplast.";
+I18N.es.status.coroplastRate = "⚠️ Revisa la tarifa por ft².";
+I18N.es.status.coroplastCustomSize = "⚠️ Escribe nombre, ancho y largo válidos para guardar el tamaño.";
+I18N.es.coroplast = {
+  title: "Coroplast Printing",
+  introHtml: "<div><b>Nota:</b> costo interno de coroplast + impresión.</div><div>El área cobrable se redondea <b>por pieza</b> hacia arriba al siguiente ft².</div>",
+  sizeTitle: "1) Tamaño",
+  sizeModeLabel: "Modo de tamaño",
+  sizeModeStandard: "Tamaño estándar",
+  sizeModeManual: "Tamaño manual",
+  stdSizeLabel: "Tamaño estándar",
+  widthLabel: "Ancho (in)",
+  heightLabel: "Largo (in)",
+  sizePreviewHtml: "<div><b>Tamaño actual:</b> {label}</div><div><b>Medidas:</b> {w}&quot; × {h}&quot;</div><div><b>Área real (1 pieza):</b> {area} ft²</div>",
+  customTitle: "2) Agregar tamaño estándar",
+  customNameLabel: "Nombre del tamaño",
+  customWidthLabel: "Ancho (in)",
+  customHeightLabel: "Largo (in)",
+  customNamePlaceholder: "Ej: 24 x 24",
+  customWidthPlaceholder: "Ej: 24",
+  customHeightPlaceholder: "Ej: 24",
+  customHint: "Se guarda en este navegador como tamaño estándar adicional.",
+  addSizeBtn: "+ Agregar tamaño",
+  printTitle: "3) Impresión",
+  sidesLabel: "Lados",
+  oneSide: "1 side",
+  twoSides: "2 sides",
+  resolutionLabel: "Resolución",
+  rateLabel: "Tarifa editable (USD / ft²)",
+  qtyLabel: "Cantidad (piezas)",
+  rateInfoHtml: "<div><b>Tarifa base sugerida:</b> {rate}/ft²</div><div>Puedes cambiarla manualmente si necesitas otro costo interno.</div>",
+  calcBtn: "Calcular Coroplast Printing",
+  actualAreaLabel: "Área real (1 pieza)",
+  billableAreaLabel: "Área cobrable (1 pieza)",
+  rateResultLabel: "Tarifa",
+  pieceCostLabel: "Costo por pieza",
+  qtyResultLabel: "Cantidad",
+  totalCostLabel: "Costo total",
+  notesHtml: "<b>Tamaño:</b> {label} ({w}&quot; × {h}&quot;)<br><b>Impresión:</b> {sides} · {resolution} DPI<br><b>Área real:</b> {actual} ft² por pieza<br><b>Área cobrable:</b> {billable} ft² por pieza<br><b>Regla:</b> se redondea hacia arriba al siguiente pie cuadrado por pieza.<br><b>Tarifa:</b> {rate}/ft²<br><b>Costo por pieza:</b> {pieceCost}<br><b>Cantidad:</b> {qty}<br><b>Costo total:</b> {total}",
+  customAdded: "Tamaño guardado: {label}",
+  manualLabel: "Manual"
+};
+
+I18N.en.modes.coroplast = "Coroplast Printing";
+I18N.en.modeTitles.coroplast = "Coroplast Printing — Internal Cost";
+I18N.en.status.coroplastSize = "⚠️ Check the coroplast dimensions.";
+I18N.en.status.coroplastRate = "⚠️ Check the cost per ft².";
+I18N.en.status.coroplastCustomSize = "⚠️ Enter a valid name, width, and height to save the size.";
+I18N.en.coroplast = {
+  title: "Coroplast Printing",
+  introHtml: "<div><b>Note:</b> internal cost for coroplast + printing.</div><div>Billable area is rounded <b>per piece</b> up to the next ft².</div>",
+  sizeTitle: "1) Size",
+  sizeModeLabel: "Size mode",
+  sizeModeStandard: "Standard size",
+  sizeModeManual: "Manual size",
+  stdSizeLabel: "Standard size",
+  widthLabel: "Width (in)",
+  heightLabel: "Length (in)",
+  sizePreviewHtml: "<div><b>Current size:</b> {label}</div><div><b>Dimensions:</b> {w}&quot; × {h}&quot;</div><div><b>Actual area (1 piece):</b> {area} ft²</div>",
+  customTitle: "2) Add standard size",
+  customNameLabel: "Size name",
+  customWidthLabel: "Width (in)",
+  customHeightLabel: "Length (in)",
+  customNamePlaceholder: "Ex: 24 x 24",
+  customWidthPlaceholder: "Ex: 24",
+  customHeightPlaceholder: "Ex: 24",
+  customHint: "Saved in this browser as an extra standard size.",
+  addSizeBtn: "+ Add size",
+  printTitle: "3) Printing",
+  sidesLabel: "Sides",
+  oneSide: "1 side",
+  twoSides: "2 sides",
+  resolutionLabel: "Resolution",
+  rateLabel: "Editable rate (USD / ft²)",
+  qtyLabel: "Quantity (pieces)",
+  rateInfoHtml: "<div><b>Suggested base rate:</b> {rate}/ft²</div><div>You can manually change it if you need a different internal cost.</div>",
+  calcBtn: "Calculate Coroplast Printing",
+  actualAreaLabel: "Actual area (1 piece)",
+  billableAreaLabel: "Billable area (1 piece)",
+  rateResultLabel: "Rate",
+  pieceCostLabel: "Cost per piece",
+  qtyResultLabel: "Quantity",
+  totalCostLabel: "Total cost",
+  notesHtml: "<b>Size:</b> {label} ({w}&quot; × {h}&quot;)<br><b>Printing:</b> {sides} · {resolution} DPI<br><b>Actual area:</b> {actual} ft² per piece<br><b>Billable area:</b> {billable} ft² per piece<br><b>Rule:</b> rounded up to the next square foot per piece.<br><b>Rate:</b> {rate}/ft²<br><b>Cost per piece:</b> {pieceCost}<br><b>Quantity:</b> {qty}<br><b>Total cost:</b> {total}",
+  customAdded: "Saved size: {label}",
+  manualLabel: "Manual"
+};
+
   function t(path, vars = {}) {
     const source = I18N[currentLang] || I18N.es;
     const value = path.split(".").reduce((acc, key) => (acc && acc[key] != null ? acc[key] : null), source);
@@ -470,6 +560,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!$("view-decals")?.hidden && !$("decalsResult")?.hidden) {
       $("calcDecals")?.click();
     }
+    if (!$("view-coroplast")?.hidden && !$("coroplastResult")?.hidden) {
+      $("calcCoroplast")?.click();
+    }
   }
 
   function applyTranslations() {
@@ -586,6 +679,45 @@ document.addEventListener("DOMContentLoaded", () => {
     setText("decMatCostLabel", t("decals.matCostLabel"));
     setText("decTotalLabel", t("decals.totalLabel"));
 
+
+    setOptionText("quoteOptionCoroplast", t("modeTitles.coroplast"));
+
+    setText("coroplastTitle", t("coroplast.title"));
+    setHtml("coroplastIntro", t("coroplast.introHtml"));
+    setText("coroplastSizeTitle", t("coroplast.sizeTitle"));
+    setText("coroplastSizeModeLabel", t("coroplast.sizeModeLabel"));
+    setOptionText("coroplastSizeModeStandard", t("coroplast.sizeModeStandard"));
+    setOptionText("coroplastSizeModeManual", t("coroplast.sizeModeManual"));
+    setText("coroplastStdSizeLabel", t("coroplast.stdSizeLabel"));
+    setText("coroplastWidthLabel", t("coroplast.widthLabel"));
+    setText("coroplastHeightLabel", t("coroplast.heightLabel"));
+    setText("coroplastCustomTitle", t("coroplast.customTitle"));
+    setText("coroplastCustomNameLabel", t("coroplast.customNameLabel"));
+    setText("coroplastCustomWidthLabel", t("coroplast.customWidthLabel"));
+    setText("coroplastCustomHeightLabel", t("coroplast.customHeightLabel"));
+    setPlaceholder("coroplastCustomName", t("coroplast.customNamePlaceholder"));
+    setPlaceholder("coroplastCustomW", t("coroplast.customWidthPlaceholder"));
+    setPlaceholder("coroplastCustomH", t("coroplast.customHeightPlaceholder"));
+    setText("coroplastCustomHint", t("coroplast.customHint"));
+    setText("addCoroplastSize", t("coroplast.addSizeBtn"));
+    setText("coroplastPrintTitle", t("coroplast.printTitle"));
+    setText("coroplastSidesLabel", t("coroplast.sidesLabel"));
+    setOptionText("coroplastSidesOne", t("coroplast.oneSide"));
+    setOptionText("coroplastSidesTwo", t("coroplast.twoSides"));
+    setText("coroplastResolutionLabel", t("coroplast.resolutionLabel"));
+    setText("coroplastRateLabel", t("coroplast.rateLabel"));
+    setText("coroplastQtyLabel", t("coroplast.qtyLabel"));
+    setText("calcCoroplast", t("coroplast.calcBtn"));
+    setText("coroplastActualAreaLabel", t("coroplast.actualAreaLabel"));
+    setText("coroplastBillableAreaLabel", t("coroplast.billableAreaLabel"));
+    setText("coroplastRateResultLabel", t("coroplast.rateResultLabel"));
+    setText("coroplastPieceCostLabel", t("coroplast.pieceCostLabel"));
+    setText("coroplastQtyResultLabel", t("coroplast.qtyResultLabel"));
+    setText("coroplastTotalCostLabel", t("coroplast.totalCostLabel"));
+    updateCoroplastStandardSizesUI();
+    updateCoroplastSizePreview();
+    updateCoroplastRateUI();
+
     updateCurrentModePill(quoteSelect?.value || "");
     updateWinRowsUi();
     renderTintBaseSummary();
@@ -613,6 +745,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Decals
     $("decalsResult") && ($("decalsResult").hidden = true);
+
+    // Coroplast
+    $("coroplastResult") && ($("coroplastResult").hidden = true);
 
     setStatus("");
   }
@@ -653,6 +788,15 @@ document.addEventListener("DOMContentLoaded", () => {
       updateDecalAreasUI();
       updateDecalsCPPUI();
       $("decalsResult") && ($("decalsResult").hidden = true);
+    }
+
+    if (mode === "coroplast") {
+      initCoroplastUI();
+      updateCoroplastSizeModeUI();
+      updateCoroplastStandardSizesUI();
+      updateCoroplastSizePreview();
+      updateCoroplastRateUI();
+      $("coroplastResult") && ($("coroplastResult").hidden = true);
     }
   }
 
@@ -1119,6 +1263,211 @@ document.addEventListener("DOMContentLoaded", () => {
       t("decals.totalEstimated", { total: money(total) });
   });
 
+
+  // =========================
+  // COROPLAST PRINTING MODULE
+  // =========================
+  const COROPLAST_DEFAULT_SIZES = [
+    { id: "12x18", label: '12" × 18"', w: 12, h: 18 },
+    { id: "18x24", label: '18" × 24"', w: 18, h: 24 },
+    { id: "24x18", label: '24" × 18"', w: 24, h: 18 },
+    { id: "24x36", label: '24" × 36"', w: 24, h: 36 },
+    { id: "36x24", label: '36" × 24"', w: 36, h: 24 },
+    { id: "48x96", label: '48" × 96"', w: 48, h: 96 },
+  ];
+  const COROPLAST_SIZES_LS_KEY = "nj_coroplast_custom_sizes_v1";
+  const COROPLAST_RATE_MAP = {
+    360: { 1: 1.5, 2: 2.0 },
+    720: { 1: 3.0, 2: 5.0 },
+    1440: { 1: 4.0, 2: 5.0 },
+  };
+
+  function getStoredCoroplastSizes() {
+    try {
+      const raw = localStorage.getItem(COROPLAST_SIZES_LS_KEY);
+      const parsed = JSON.parse(raw || "[]");
+      if (!Array.isArray(parsed)) return [];
+      return parsed.filter(x => x && Number(x.w) > 0 && Number(x.h) > 0 && x.label);
+    } catch {
+      return [];
+    }
+  }
+
+  function saveCoroplastSizes(list) {
+    localStorage.setItem(COROPLAST_SIZES_LS_KEY, JSON.stringify(list));
+  }
+
+  function getAllCoroplastSizes() {
+    return [...COROPLAST_DEFAULT_SIZES, ...getStoredCoroplastSizes()];
+  }
+
+  function updateCoroplastStandardSizesUI() {
+    const sel = $("coroplastStdSize");
+    if (!sel) return;
+    const prev = sel.value;
+    const items = getAllCoroplastSizes();
+    sel.innerHTML = "";
+    items.forEach(it => {
+      const opt = document.createElement("option");
+      opt.value = it.id;
+      opt.textContent = it.label;
+      sel.appendChild(opt);
+    });
+    sel.value = items.some(x => x.id === prev) ? prev : (items[0]?.id || "");
+  }
+
+  function getCoroplastDims() {
+    const mode = $("coroplastSizeMode")?.value || "standard";
+    if (mode === "manual") {
+      const w = clampMin(safeNum($("coroplastW"), 0), 0.01);
+      const h = clampMin(safeNum($("coroplastH"), 0), 0.01);
+      return { mode, label: t("coroplast.manualLabel"), w, h };
+    }
+    const id = $("coroplastStdSize")?.value || "";
+    const item = getAllCoroplastSizes().find(x => x.id === id) || COROPLAST_DEFAULT_SIZES[0];
+    return { mode, label: item.label, w: Number(item.w), h: Number(item.h) };
+  }
+
+  function updateCoroplastSizeModeUI() {
+    const manual = $("coroplastSizeMode")?.value === "manual";
+    if ($("coroplastManualRow")) $("coroplastManualRow").hidden = !manual;
+    if ($("coroplastStdSize")) $("coroplastStdSize").disabled = manual;
+  }
+
+  function updateCoroplastSizePreview() {
+    const box = $("coroplastSizePreview");
+    if (!box) return;
+    const { label, w, h } = getCoroplastDims();
+    const area = (w * h) / 144;
+    box.innerHTML = t("coroplast.sizePreviewHtml", {
+      label: escapeHtml(label),
+      w: Number(w).toFixed(2).replace(/\.00$/, ""),
+      h: Number(h).toFixed(2).replace(/\.00$/, ""),
+      area: area.toFixed(4)
+    });
+  }
+
+  function getCoroplastBaseRate() {
+    const sides = Number($("coroplastSides")?.value || 1);
+    const resolution = Number($("coroplastResolution")?.value || 360);
+    return COROPLAST_RATE_MAP[resolution]?.[sides] ?? 0;
+  }
+
+  function updateCoroplastRateUI(resetValue = false) {
+    const baseRate = getCoroplastBaseRate();
+    const input = $("coroplastRate");
+    const info = $("coroplastRateInfo");
+    if (input && (resetValue || !input.value || Number(input.value) <= 0)) {
+      input.value = baseRate ? baseRate.toFixed(2) : "";
+    }
+    if (info) {
+      info.innerHTML = t("coroplast.rateInfoHtml", { rate: money(baseRate) });
+    }
+  }
+
+  function initCoroplastUI() {
+    updateCoroplastStandardSizesUI();
+    updateCoroplastSizeModeUI();
+    updateCoroplastSizePreview();
+    updateCoroplastRateUI(false);
+  }
+
+  $("coroplastSizeMode")?.addEventListener("change", () => {
+    updateCoroplastSizeModeUI();
+    updateCoroplastSizePreview();
+    $("coroplastResult") && ($("coroplastResult").hidden = true);
+  });
+  $("coroplastStdSize")?.addEventListener("change", () => {
+    updateCoroplastSizePreview();
+    $("coroplastResult") && ($("coroplastResult").hidden = true);
+  });
+  $("coroplastW")?.addEventListener("input", () => {
+    updateCoroplastSizePreview();
+    $("coroplastResult") && ($("coroplastResult").hidden = true);
+  });
+  $("coroplastH")?.addEventListener("input", () => {
+    updateCoroplastSizePreview();
+    $("coroplastResult") && ($("coroplastResult").hidden = true);
+  });
+  $("coroplastSides")?.addEventListener("change", () => {
+    updateCoroplastRateUI(true);
+    $("coroplastResult") && ($("coroplastResult").hidden = true);
+  });
+  $("coroplastResolution")?.addEventListener("change", () => {
+    updateCoroplastRateUI(true);
+    $("coroplastResult") && ($("coroplastResult").hidden = true);
+  });
+  $("coroplastRate")?.addEventListener("input", () => {
+    $("coroplastResult") && ($("coroplastResult").hidden = true);
+  });
+  $("coroplastQty")?.addEventListener("input", () => {
+    $("coroplastResult") && ($("coroplastResult").hidden = true);
+  });
+
+  $("addCoroplastSize")?.addEventListener("click", () => {
+    const name = $("coroplastCustomName")?.value?.trim() || "";
+    const w = clampMin(safeNum($("coroplastCustomW"), 0), 0);
+    const h = clampMin(safeNum($("coroplastCustomH"), 0), 0);
+    if (!name || w <= 0 || h <= 0) return setStatusKey("status.coroplastCustomSize");
+
+    const stored = getStoredCoroplastSizes();
+    const id = `c_${Date.now()}`;
+    const label = `${name} (${w}" × ${h}")`;
+    stored.push({ id, label, w, h });
+    saveCoroplastSizes(stored);
+
+    $("coroplastCustomName").value = "";
+    $("coroplastCustomW").value = "";
+    $("coroplastCustomH").value = "";
+    updateCoroplastStandardSizesUI();
+    $("coroplastStdSize").value = id;
+    $("coroplastSizeMode").value = "standard";
+    updateCoroplastSizeModeUI();
+    updateCoroplastSizePreview();
+    setStatus(t("coroplast.customAdded", { label }));
+  });
+
+  $("calcCoroplast")?.addEventListener("click", () => {
+    const { label, w, h } = getCoroplastDims();
+    if (w <= 0 || h <= 0) return setStatusKey("status.coroplastSize");
+
+    const rate = clampMin(safeNum($("coroplastRate"), 0), 0);
+    if (rate <= 0) return setStatusKey("status.coroplastRate");
+
+    setStatus("");
+
+    const qty = clampMin(Math.floor(safeNum($("coroplastQty"), 1)), 1);
+    const sidesLabel = $("coroplastSides")?.value === "2" ? t("coroplast.twoSides") : t("coroplast.oneSide");
+    const resolution = $("coroplastResolution")?.value || "360";
+
+    const actualArea = (w * h) / 144;
+    const billableArea = Math.ceil(actualArea);
+    const pieceCost = billableArea * rate;
+    const totalCost = pieceCost * qty;
+
+    $("coroplastResult").hidden = false;
+    $("coroplastActualArea").textContent = `${actualArea.toFixed(4)} ft²`;
+    $("coroplastBillableArea").textContent = `${billableArea.toFixed(0)} ft²`;
+    $("coroplastRateResult").textContent = `${money(rate)}/ft²`;
+    $("coroplastPieceCost").textContent = money(pieceCost);
+    $("coroplastQtyResult").textContent = String(qty);
+    $("coroplastTotalCost").textContent = money(totalCost);
+
+    $("coroplastNotes").innerHTML = t("coroplast.notesHtml", {
+      label: escapeHtml(label),
+      w: Number(w).toFixed(2).replace(/\.00$/, ""),
+      h: Number(h).toFixed(2).replace(/\.00$/, ""),
+      sides: sidesLabel,
+      resolution,
+      actual: actualArea.toFixed(4),
+      billable: billableArea.toFixed(0),
+      rate: money(rate),
+      pieceCost: money(pieceCost),
+      qty,
+      total: money(totalCost)
+    });
+  });
+
   // ===== INIT =====
   resetAll();
   renderTintBaseSummary();
@@ -1131,5 +1480,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initDecalsUI();
   updateDecalAreasUI();
   updateDecalsCPPUI();
+  initCoroplastUI();
   applyTranslations();
 });

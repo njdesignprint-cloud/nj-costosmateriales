@@ -32,6 +32,7 @@
 <option data-value="tint" id="quoteOptionTint" value="tint">Commercial Windows Tint (Costo material)</option>
 <option data-value="printing" id="quoteOptionPrinting" value="printing">Printing Cost (ft²)</option>
 <option data-value="decals" id="quoteOptionDecals" value="decals">Decals</option>
+<option data-value="coroplast" id="quoteOptionCoroplast" value="coroplast">Coroplast Printing</option>
 </select>
 </div>
 <div>
@@ -342,6 +343,106 @@
 <div class="k"><div class="t" id="decTotalLabel">Total + shipping</div><div class="v" id="decTotal">$0.00</div></div>
 </div>
 <div class="notes" id="decalsNotes"></div>
+</div>
+</div>
+<!-- =======================
+           COROPLAST PRINTING
+           ======================= -->
+<div class="view" hidden="" id="view-coroplast">
+<div class="subTitle" id="coroplastTitle">Coroplast Printing</div>
+<div class="materialBox" id="coroplastIntro">
+<div><b>Nota:</b> costo interno de coroplast + impresión.</div>
+<div>El área cobrable se redondea <b>por pieza</b> hacia arriba al siguiente ft².</div>
+</div>
+<div class="subTitle" id="coroplastSizeTitle" style="margin-top:12px;">1) Tamaño</div>
+<div class="row">
+<div>
+<label id="coroplastSizeModeLabel">Modo de tamaño</label>
+<select id="coroplastSizeMode">
+<option id="coroplastSizeModeStandard" selected="" value="standard">Tamaño estándar</option>
+<option id="coroplastSizeModeManual" value="manual">Tamaño manual</option>
+</select>
+</div>
+<div>
+<label id="coroplastStdSizeLabel">Tamaño estándar</label>
+<select id="coroplastStdSize"></select>
+</div>
+</div>
+<div class="row" hidden="" id="coroplastManualRow">
+<div>
+<label id="coroplastWidthLabel">Ancho (in)</label>
+<input id="coroplastW" step="0.01" type="number" value="24"/>
+</div>
+<div>
+<label id="coroplastHeightLabel">Largo (in)</label>
+<input id="coroplastH" step="0.01" type="number" value="18"/>
+</div>
+</div>
+<div class="materialBox" id="coroplastSizePreview"></div>
+<div class="subTitle" id="coroplastCustomTitle" style="margin-top:12px;">2) Agregar tamaño estándar</div>
+<div class="row">
+<div>
+<label id="coroplastCustomNameLabel">Nombre del tamaño</label>
+<input id="coroplastCustomName" placeholder="Ej: 24 x 24" type="text"/>
+</div>
+<div>
+<label id="coroplastCustomWidthLabel">Ancho (in)</label>
+<input id="coroplastCustomW" step="0.01" type="number" placeholder="Ej: 24"/>
+</div>
+</div>
+<div class="row">
+<div>
+<label id="coroplastCustomHeightLabel">Largo (in)</label>
+<input id="coroplastCustomH" step="0.01" type="number" placeholder="Ej: 24"/>
+</div>
+<div class="hint"><span id="coroplastCustomHint">Se guarda en este navegador como tamaño estándar adicional.</span></div>
+</div>
+<div class="btnRow">
+<button class="ghost" id="addCoroplastSize">+ Agregar tamaño</button>
+</div>
+<div class="hr"></div>
+<div class="subTitle" id="coroplastPrintTitle">3) Impresión</div>
+<div class="row">
+<div>
+<label id="coroplastSidesLabel">Lados</label>
+<select id="coroplastSides">
+<option id="coroplastSidesOne" selected="" value="1">1 side</option>
+<option id="coroplastSidesTwo" value="2">2 sides</option>
+</select>
+</div>
+<div>
+<label id="coroplastResolutionLabel">Resolución</label>
+<select id="coroplastResolution">
+<option value="360">360</option>
+<option value="720">720</option>
+<option value="1440">1440</option>
+</select>
+</div>
+</div>
+<div class="row">
+<div>
+<label id="coroplastRateLabel">Tarifa editable (USD / ft²)</label>
+<input id="coroplastRate" step="0.01" type="number" value="1.50"/>
+</div>
+<div>
+<label id="coroplastQtyLabel">Cantidad (piezas)</label>
+<input id="coroplastQty" step="1" type="number" value="1"/>
+</div>
+</div>
+<div class="materialBox" id="coroplastRateInfo"></div>
+<button class="primary" id="calcCoroplast">Calcular Coroplast Printing</button>
+<div class="result" hidden="" id="coroplastResult">
+<div class="kpi">
+<div class="k"><div class="t" id="coroplastActualAreaLabel">Área real (1 pieza)</div><div class="v" id="coroplastActualArea">—</div></div>
+<div class="k"><div class="t" id="coroplastBillableAreaLabel">Área cobrable (1 pieza)</div><div class="v" id="coroplastBillableArea">—</div></div>
+<div class="k"><div class="t" id="coroplastRateResultLabel">Tarifa</div><div class="v" id="coroplastRateResult">—</div></div>
+</div>
+<div class="kpi" style="margin-top:10px;">
+<div class="k"><div class="t" id="coroplastPieceCostLabel">Costo por pieza</div><div class="v" id="coroplastPieceCost">—</div></div>
+<div class="k"><div class="t" id="coroplastQtyResultLabel">Cantidad</div><div class="v" id="coroplastQtyResult">—</div></div>
+<div class="k"><div class="t" id="coroplastTotalCostLabel">Costo total</div><div class="v" id="coroplastTotalCost">—</div></div>
+</div>
+<div class="notes" id="coroplastNotes"></div>
 </div>
 </div>
 </section>
