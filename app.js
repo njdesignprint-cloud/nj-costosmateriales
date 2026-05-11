@@ -434,6 +434,173 @@ I18N.en.coroplast = {
   manualLabel: "Manual"
 };
 
+  I18N.es.modes.coroplast = "Coroplast Printing";
+  I18N.en.modes.coroplast = "Coroplast Printing";
+  I18N.es.modeTitles.coroplast = "Coroplast Printing";
+  I18N.en.modeTitles.coroplast = "Coroplast Printing";
+
+  I18N.es.suppliers = {
+    cardTitle: "Proveedores",
+    selectLabel: "Proveedor activo",
+    nameLabel: "Nombre del proveedor",
+    namePlaceholder: "Ej: Grimco",
+    addBtn: "+ Agregar proveedor",
+    saveNameBtn: "Guardar nombre",
+    manageBtn: "Administrar proveedor",
+    manageBtnClose: "Ocultar administración",
+    deleteBtn: "Eliminar proveedor",
+    summaryBase: "Base editable · no se puede borrar.",
+    summaryCustom: "Este proveedor usa la misma estructura del estimador base, pero con precios propios.",
+    summaryHtml: "<div><b>Proveedor activo:</b> {name}</div><div>{hint}</div>",
+    helpTitle: "Cómo guardar precios",
+    helpText: "Los precios que cambies se guardan para el proveedor activo. <b>Tint</b>, <b>Decals</b> y <b>Coroplast</b> guardan desde sus propios módulos. En <b>Printing</b>, la tarifa seleccionada ahora es editable y también se guarda por proveedor.",
+    addPrompt: "Escribe el nombre del nuevo proveedor:",
+    addDefaultName: "Proveedor nuevo",
+    addStatus: "Proveedor creado: {name}",
+    saveStatus: "Proveedor actualizado: {name}",
+    deleteStatus: "Proveedor eliminado.",
+    deleteBlocked: "El proveedor base no se puede borrar.",
+    deleteConfirm: "¿Seguro que quieres eliminar este proveedor?",
+    duplicateName: "Ya existe un proveedor con ese nombre.",
+    nameRequired: "Escribe un nombre válido para el proveedor.",
+    servicesTitle: "Servicios extra del proveedor",
+    serviceListTitle: "Lista de servicios extra",
+    serviceNameLabel: "Nombre del servicio",
+    serviceNamePlaceholder: "Ej: PVC Printing",
+    serviceTypeLabel: "Tipo de mini estimador",
+    serviceRateLabel: "Tarifa base (USD)",
+    serviceRatePlaceholder: "Ej: 3.50",
+    serviceNoteLabel: "Nota",
+    serviceNotePlaceholder: "Opcional",
+    addServiceBtn: "+ Agregar servicio",
+    noServices: "Este proveedor todavía no tiene servicios extra.",
+    serviceAdded: "Servicio agregado: {name}",
+    serviceDeleted: "Servicio eliminado.",
+    serviceNameRequired: "Escribe el nombre del servicio.",
+    typeArea: "Por ft²",
+    typePiece: "Por pieza",
+    typeLinear: "Por pie lineal",
+    typeFixed: "Precio fijo",
+    deleteService: "Eliminar servicio",
+    printRateInlineLabel: "Tarifa del proveedor (USD / ft²)",
+    printRateMissing: "⚠️ Pon la tarifa de este proveedor para este tipo de impresión.",
+    coroplastRateMissing: "⚠️ Pon la tarifa de este proveedor para esta configuración de coroplast."
+  };
+
+  I18N.en.suppliers = {
+    cardTitle: "Suppliers",
+    selectLabel: "Active supplier",
+    nameLabel: "Supplier name",
+    namePlaceholder: "Ex: Grimco",
+    addBtn: "+ Add supplier",
+    saveNameBtn: "Save name",
+    manageBtn: "Manage supplier",
+    manageBtnClose: "Hide management",
+    deleteBtn: "Delete supplier",
+    summaryBase: "Editable base supplier · cannot be deleted.",
+    summaryCustom: "This supplier uses the same estimator structure as Base, but with its own prices.",
+    summaryHtml: "<div><b>Active supplier:</b> {name}</div><div>{hint}</div>",
+    helpTitle: "How to save prices",
+    helpText: "Prices you change are saved for the active supplier. <b>Tint</b>, <b>Decals</b> and <b>Coroplast</b> save from their own modules. In <b>Printing</b>, the selected rate is now editable and is also saved per supplier.",
+    addPrompt: "Enter the new supplier name:",
+    addDefaultName: "New supplier",
+    addStatus: "Supplier created: {name}",
+    saveStatus: "Supplier updated: {name}",
+    deleteStatus: "Supplier deleted.",
+    deleteBlocked: "The base supplier cannot be deleted.",
+    deleteConfirm: "Are you sure you want to delete this supplier?",
+    duplicateName: "A supplier with that name already exists.",
+    nameRequired: "Enter a valid supplier name.",
+    servicesTitle: "Supplier extra services",
+    serviceListTitle: "Extra service list",
+    serviceNameLabel: "Service name",
+    serviceNamePlaceholder: "Ex: PVC Printing",
+    serviceTypeLabel: "Mini estimator type",
+    serviceRateLabel: "Base rate (USD)",
+    serviceRatePlaceholder: "Ex: 3.50",
+    serviceNoteLabel: "Note",
+    serviceNotePlaceholder: "Optional",
+    addServiceBtn: "+ Add service",
+    noServices: "This supplier does not have extra services yet.",
+    serviceAdded: "Service added: {name}",
+    serviceDeleted: "Service deleted.",
+    serviceNameRequired: "Enter the service name.",
+    typeArea: "By ft²",
+    typePiece: "By piece",
+    typeLinear: "By linear foot",
+    typeFixed: "Fixed price",
+    deleteService: "Delete service",
+    printRateInlineLabel: "Supplier rate (USD / ft²)",
+    printRateMissing: "⚠️ Enter this supplier rate for this print type.",
+    coroplastRateMissing: "⚠️ Enter this supplier rate for this coroplast setup."
+  };
+
+  I18N.es.customService = {
+    titleFallback: "Servicio extra",
+    introHtml: "<div><b>Servicio:</b> {name}</div><div><b>Tipo:</b> {type}</div><div><b>Nota:</b> {note}</div>",
+    rateLabel: "Tarifa (USD)",
+    qtyLabel: "Cantidad",
+    widthLabel: "Ancho",
+    heightLabel: "Largo",
+    areaUnitLabel: "Unidad",
+    lengthLabel: "Largo",
+    unitLabel: "Unidad",
+    calcBtn: "Calcular servicio",
+    typeHintArea: "Este servicio calcula área por pieza y luego multiplica por cantidad.",
+    typeHintPiece: "Este servicio usa una tarifa fija por pieza.",
+    typeHintLinear: "Este servicio calcula el largo y luego multiplica por cantidad.",
+    typeHintFixed: "Este servicio usa una tarifa fija por trabajo y cantidad.",
+    measureLabel: "Medida calculada",
+    rateResultLabel: "Tarifa",
+    qtyResultLabel: "Cantidad",
+    unitCostLabel: "Costo unitario",
+    totalCostLabel: "Costo total",
+    typeResultLabel: "Tipo",
+    areaNotes: "<b>Medidas:</b> {w} × {h} ({unit})<br><b>Área por pieza:</b> {measure}<br><b>Tarifa:</b> {rate}<br><b>Costo por pieza:</b> {unitCost}<br><b>Cantidad:</b> {qty}<br><b>Total:</b> {total}",
+    linearNotes: "<b>Largo:</b> {length} ({unit})<br><b>Largo calculado:</b> {measure}<br><b>Tarifa:</b> {rate}<br><b>Costo por unidad:</b> {unitCost}<br><b>Cantidad:</b> {qty}<br><b>Total:</b> {total}",
+    pieceNotes: "<b>Tarifa por pieza:</b> {rate}<br><b>Cantidad:</b> {qty}<br><b>Total:</b> {total}",
+    fixedNotes: "<b>Tarifa fija:</b> {rate}<br><b>Cantidad:</b> {qty}<br><b>Total:</b> {total}",
+    areaMeasureSuffix: "ft²",
+    linearMeasureSuffix: "ft",
+    pieceMeasure: "1 pieza",
+    fixedMeasure: "1 trabajo",
+    missingRate: "⚠️ Pon la tarifa de este servicio.",
+    missingMeasure: "⚠️ Completa las medidas de este servicio."
+  };
+
+  I18N.en.customService = {
+    titleFallback: "Extra service",
+    introHtml: "<div><b>Service:</b> {name}</div><div><b>Type:</b> {type}</div><div><b>Note:</b> {note}</div>",
+    rateLabel: "Rate (USD)",
+    qtyLabel: "Quantity",
+    widthLabel: "Width",
+    heightLabel: "Height",
+    areaUnitLabel: "Unit",
+    lengthLabel: "Length",
+    unitLabel: "Unit",
+    calcBtn: "Calculate service",
+    typeHintArea: "This service calculates area per piece and then multiplies by quantity.",
+    typeHintPiece: "This service uses a fixed rate per piece.",
+    typeHintLinear: "This service calculates length and then multiplies by quantity.",
+    typeHintFixed: "This service uses a fixed rate per job and quantity.",
+    measureLabel: "Calculated measure",
+    rateResultLabel: "Rate",
+    qtyResultLabel: "Quantity",
+    unitCostLabel: "Unit cost",
+    totalCostLabel: "Total cost",
+    typeResultLabel: "Type",
+    areaNotes: "<b>Size:</b> {w} × {h} ({unit})<br><b>Area per piece:</b> {measure}<br><b>Rate:</b> {rate}<br><b>Cost per piece:</b> {unitCost}<br><b>Quantity:</b> {qty}<br><b>Total:</b> {total}",
+    linearNotes: "<b>Length:</b> {length} ({unit})<br><b>Calculated length:</b> {measure}<br><b>Rate:</b> {rate}<br><b>Cost per unit:</b> {unitCost}<br><b>Quantity:</b> {qty}<br><b>Total:</b> {total}",
+    pieceNotes: "<b>Rate per piece:</b> {rate}<br><b>Quantity:</b> {qty}<br><b>Total:</b> {total}",
+    fixedNotes: "<b>Fixed rate:</b> {rate}<br><b>Quantity:</b> {qty}<br><b>Total:</b> {total}",
+    areaMeasureSuffix: "ft²",
+    linearMeasureSuffix: "ft",
+    pieceMeasure: "1 piece",
+    fixedMeasure: "1 job",
+    missingRate: "⚠️ Enter the rate for this service.",
+    missingMeasure: "⚠️ Complete the measurements for this service."
+  };
+
   function t(path, vars = {}) {
     const source = I18N[currentLang] || I18N.es;
     const value = path.split(".").reduce((acc, key) => (acc && acc[key] != null ? acc[key] : null), source);
@@ -525,12 +692,206 @@ I18N.en.coroplast = {
   const currentMode = $("currentMode");
   const resetBtn = $("resetBtn");
 
+  const SUPPLIERS_LS_KEY = "nj_suppliers_v1";
+  const CURRENT_SUPPLIER_KEY = "nj_current_supplier_v1";
+  const BASE_MODES = ["tint", "printing", "decals", "coroplast"];
+
+  function normalizeService(item) {
+    return {
+      id: item?.id || `svc_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+      name: item?.name || "",
+      calcType: ["area","piece","linear","fixed"].includes(item?.calcType) ? item.calcType : "area",
+      rate: item?.rate != null ? String(item.rate) : "",
+      note: item?.note || ""
+    };
+  }
+
+  function normalizeSupplier(item) {
+    return {
+      id: item?.id || `sup_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+      name: item?.name || t("suppliers.addDefaultName"),
+      customServices: Array.isArray(item?.customServices) ? item.customServices.map(normalizeService) : []
+    };
+  }
+
+  function loadSuppliers() {
+    let parsed = [];
+    try {
+      parsed = JSON.parse(localStorage.getItem(SUPPLIERS_LS_KEY) || "[]");
+      if (!Array.isArray(parsed)) parsed = [];
+    } catch {
+      parsed = [];
+    }
+    const normalized = parsed.map(normalizeSupplier);
+    if (!normalized.some((s) => s.id === "base")) {
+      normalized.unshift({ id: "base", name: "Base", customServices: [] });
+    }
+    return normalized;
+  }
+
+  let suppliers = loadSuppliers();
+  let currentSupplierId = localStorage.getItem(CURRENT_SUPPLIER_KEY) || "base";
+  if (!suppliers.some((s) => s.id === currentSupplierId)) currentSupplierId = "base";
+
+  function saveSuppliers() {
+    localStorage.setItem(SUPPLIERS_LS_KEY, JSON.stringify(suppliers));
+  }
+
+  function getCurrentSupplier() {
+    return suppliers.find((s) => s.id === currentSupplierId) || suppliers[0];
+  }
+
+  function isBaseSupplier() {
+    return currentSupplierId === "base";
+  }
+
+  function supplierStorageKey(path) {
+    return `nj_supplier_${currentSupplierId}_${path}`;
+  }
+
+  function getCurrentStored(path) {
+    return localStorage.getItem(supplierStorageKey(path));
+  }
+
+  function setCurrentStored(path, value) {
+    const key = supplierStorageKey(path);
+    if (value == null || value === "") localStorage.removeItem(key);
+    else localStorage.setItem(key, String(value));
+  }
+
+  function getCurrentCustomServices() {
+    return getCurrentSupplier()?.customServices || [];
+  }
+
+  function isCustomMode(mode) {
+    return String(mode || "").startsWith("service:");
+  }
+
+  function getCustomServiceByMode(mode) {
+    if (!isCustomMode(mode)) return null;
+    const serviceId = String(mode).slice(8);
+    return getCurrentCustomServices().find((s) => s.id === serviceId) || null;
+  }
+
+  function getServiceTypeLabel(type) {
+    if (type === "piece") return t("suppliers.typePiece");
+    if (type === "linear") return t("suppliers.typeLinear");
+    if (type === "fixed") return t("suppliers.typeFixed");
+    return t("suppliers.typeArea");
+  }
+
+  function buildQuoteOptions(selectedValue = "") {
+    if (!quoteSelect) return;
+    const options = [{ value: "", label: t("main.selectOption") }];
+    BASE_MODES.forEach((mode) => options.push({ value: mode, label: t(`modeTitles.${mode}`) }));
+    getCurrentCustomServices().forEach((service) => {
+      options.push({ value: `service:${service.id}`, label: service.name });
+    });
+    quoteSelect.innerHTML = "";
+    options.forEach((item, idx) => {
+      const opt = document.createElement("option");
+      opt.value = item.value;
+      opt.textContent = item.label;
+      if (idx === 0) opt.id = "quoteOptionEmpty";
+      quoteSelect.appendChild(opt);
+    });
+    const allowed = new Set(options.map((o) => o.value));
+    quoteSelect.value = allowed.has(selectedValue) ? selectedValue : "";
+  }
+
+  function renderSupplierSelect() {
+    const sel = $("supplierSelect");
+    if (!sel) return;
+    sel.innerHTML = "";
+    suppliers.forEach((supplier) => {
+      const opt = document.createElement("option");
+      opt.value = supplier.id;
+      opt.textContent = supplier.name;
+      sel.appendChild(opt);
+    });
+    sel.value = currentSupplierId;
+  }
+
+  function renderSupplierSummary() {
+    const box = $("supplierSummaryBox");
+    if (!box) return;
+    const supplier = getCurrentSupplier();
+    const hint = isBaseSupplier() ? t("suppliers.summaryBase") : t("suppliers.summaryCustom");
+    box.innerHTML = t("suppliers.summaryHtml", { name: escapeHtml(supplier?.name || "Base"), hint });
+    if ($("supplierNameInput")) $("supplierNameInput").value = supplier?.name || "";
+    if ($("deleteSupplierBtn")) $("deleteSupplierBtn").disabled = isBaseSupplier();
+  }
+
+  function renderSupplierServiceList() {
+    const host = $("supplierServiceList");
+    if (!host) return;
+    const services = getCurrentCustomServices();
+    host.innerHTML = "";
+    if (!services.length) {
+      host.innerHTML = `<div class="serviceEmpty">${escapeHtml(t("suppliers.noServices"))}</div>`;
+      return;
+    }
+    services.forEach((service) => {
+      const row = document.createElement("div");
+      row.className = "serviceRow";
+      row.innerHTML = `
+        <div class="serviceMeta">
+          <div class="serviceName">${escapeHtml(service.name)}</div>
+          <div class="serviceMini">${escapeHtml(getServiceTypeLabel(service.calcType))}</div>
+          <div class="serviceMini">${service.rate ? escapeHtml(money(service.rate)) : "—"}</div>
+          <div class="serviceMini">${escapeHtml(service.note || "")}</div>
+        </div>
+        <button class="iconBtn" type="button" title="${escapeHtml(t("suppliers.deleteService"))}">✕</button>
+      `;
+      row.querySelector("button")?.addEventListener("click", () => {
+        const supplier = getCurrentSupplier();
+        supplier.customServices = supplier.customServices.filter((s) => s.id !== service.id);
+        saveSuppliers();
+        if (quoteSelect?.value === `service:${service.id}`) resetAll();
+        renderSupplierServiceList();
+        buildQuoteOptions(quoteSelect?.value || "");
+        setStatus(t("suppliers.serviceDeleted"));
+      });
+      host.appendChild(row);
+    });
+  }
+
+  function loadCurrentSupplierInputs() {
+    if ($("rollWidthIn")) $("rollWidthIn").value = getCurrentStored("tint_rollWidth") ?? "60";
+    if ($("rollPrice")) $("rollPrice").value = getCurrentStored("tint_rollPrice") ?? (isBaseSupplier() ? "350" : "");
+    if ($("oraPrice")) $("oraPrice").value = "";
+    if ($("tapePrice")) $("tapePrice").value = "";
+    if ($("shipCost")) $("shipCost").value = getCurrentStored("ship_cost") ?? "0";
+    updatePrintRateUI(true);
+    updateDecalsCPPUI();
+    updateCoroplastRateUI(true);
+    renderTintBaseSummary();
+    updateCoroplastSizePreview();
+    renderSupplierSummary();
+    renderSupplierServiceList();
+  }
+
+  function changeSupplier(nextId) {
+    currentSupplierId = nextId;
+    localStorage.setItem(CURRENT_SUPPLIER_KEY, currentSupplierId);
+    resetAll();
+    renderSupplierSelect();
+    buildQuoteOptions("");
+    loadCurrentSupplierInputs();
+  }
+
   function getModeLabel(mode) {
+    if (isCustomMode(mode)) return getCustomServiceByMode(mode)?.name || t("customService.titleFallback");
     return t(`modes.${mode}`) || mode;
   }
 
   function renderViewTitle(mode) {
     if (!viewTitle) return;
+    if (isCustomMode(mode)) {
+      const service = getCustomServiceByMode(mode);
+      viewTitle.innerHTML = `<b>${escapeHtml(service?.name || t("customService.titleFallback"))}</b>`;
+      return;
+    }
     viewTitle.innerHTML = `<b>${t(`modeTitles.${mode}`) || mode}</b>`;
   }
 
@@ -563,6 +924,9 @@ I18N.en.coroplast = {
     if (!$("view-coroplast")?.hidden && !$("coroplastResult")?.hidden) {
       $("calcCoroplast")?.click();
     }
+    if (!$("view-custom-service")?.hidden && !$("customServiceResult")?.hidden) {
+      $("calcCustomService")?.click();
+    }
   }
 
   function applyTranslations() {
@@ -583,6 +947,31 @@ I18N.en.coroplast = {
     setText("noteLabel", t("main.noteLabel"));
     setPlaceholder("note", t("main.notePlaceholder"));
     setText("resetBtn", t("main.resetBtn"));
+
+    setText("suppliersCardTitle", t("suppliers.cardTitle"));
+    setText("supplierSelectLabel", t("suppliers.selectLabel"));
+    setText("supplierNameLabel", t("suppliers.nameLabel"));
+    setPlaceholder("supplierNameInput", t("suppliers.namePlaceholder"));
+    setText("addSupplierBtn", t("suppliers.addBtn"));
+    setText("saveSupplierNameBtn", t("suppliers.saveNameBtn"));
+    setText("toggleSupplierPanelBtn", $("supplierPanel")?.hidden ? t("suppliers.manageBtn") : t("suppliers.manageBtnClose"));
+    setText("deleteSupplierBtn", t("suppliers.deleteBtn"));
+    setText("supplierServicesTitle", t("suppliers.servicesTitle"));
+    setText("supplierServiceListTitle", t("suppliers.serviceListTitle"));
+    setText("serviceNameLabel", t("suppliers.serviceNameLabel"));
+    setPlaceholder("serviceNameInput", t("suppliers.serviceNamePlaceholder"));
+    setText("serviceTypeLabel", t("suppliers.serviceTypeLabel"));
+    setOptionText("serviceTypeArea", t("suppliers.typeArea"));
+    setOptionText("serviceTypePiece", t("suppliers.typePiece"));
+    setOptionText("serviceTypeLinear", t("suppliers.typeLinear"));
+    setOptionText("serviceTypeFixed", t("suppliers.typeFixed"));
+    setText("serviceRateLabel", t("suppliers.serviceRateLabel"));
+    setPlaceholder("serviceRateInput", t("suppliers.serviceRatePlaceholder"));
+    setText("serviceNoteLabel", t("suppliers.serviceNoteLabel"));
+    setPlaceholder("serviceNoteInput", t("suppliers.serviceNotePlaceholder"));
+    setText("addServiceBtn", t("suppliers.addServiceBtn"));
+    setText("supplierRatesHelpTitle", t("suppliers.helpTitle"));
+    setHtml("supplierRatesHelpText", t("suppliers.helpText"));
 
     setText("tintBaseTitle", t("tint.baseTitle"));
     setHtml("tintBaseInfo", t("tint.baseInfoHtml"));
@@ -629,7 +1018,7 @@ I18N.en.coroplast = {
     setOptionText("printTypeMicroperf", t("printing.typeMicroperf"));
     setOptionText("printTypeBanner", t("printing.typeBanner"));
     setOptionText("printTypeWrap", t("printing.typeWrap"));
-    setText("printRateLabel", t("printing.rateLabel"));
+    setText("printRateLabel", t("suppliers.printRateInlineLabel"));
     setText("printWLabel", t("printing.widthLabel"));
     setText("printLLabel", t("printing.lengthLabel"));
     setPlaceholder("printW", currentLang === "es" ? "Ej: 48" : "Ex: 48");
@@ -714,9 +1103,34 @@ I18N.en.coroplast = {
     setText("coroplastPieceCostLabel", t("coroplast.pieceCostLabel"));
     setText("coroplastQtyResultLabel", t("coroplast.qtyResultLabel"));
     setText("coroplastTotalCostLabel", t("coroplast.totalCostLabel"));
+
+    setText("customRateLabel", t("customService.rateLabel"));
+    setText("customQtyLabel", t("customService.qtyLabel"));
+    setText("customWidthLabel", t("customService.widthLabel"));
+    setText("customHeightLabel", t("customService.heightLabel"));
+    setText("customAreaUnitLabel", t("customService.areaUnitLabel"));
+    setOptionText("customAreaUnitIn", t("common.inches"));
+    setOptionText("customAreaUnitFt", t("common.feet"));
+    setText("customLengthLabel", t("customService.lengthLabel"));
+    setText("customUnitLabel", t("customService.unitLabel"));
+    setOptionText("customUnitIn", t("common.inches"));
+    setOptionText("customUnitFt", t("common.feet"));
+    setText("calcCustomService", t("customService.calcBtn"));
+    setText("customMeasureLabel", t("customService.measureLabel"));
+    setText("customRateResultLabel", t("customService.rateResultLabel"));
+    setText("customQtyResultLabel", t("customService.qtyResultLabel"));
+    setText("customUnitCostLabel", t("customService.unitCostLabel"));
+    setText("customTotalCostLabel", t("customService.totalCostLabel"));
+    setText("customTypeResultLabel", t("customService.typeResultLabel"));
     updateCoroplastStandardSizesUI();
     updateCoroplastSizePreview();
     updateCoroplastRateUI();
+
+    renderSupplierSelect();
+    renderSupplierSummary();
+    renderSupplierServiceList();
+    buildQuoteOptions(quoteSelect?.value || "");
+    if (isCustomMode(quoteSelect?.value || "")) initCustomServiceView(quoteSelect.value);
 
     updateCurrentModePill(quoteSelect?.value || "");
     updateWinRowsUi();
@@ -749,6 +1163,9 @@ I18N.en.coroplast = {
     // Coroplast
     $("coroplastResult") && ($("coroplastResult").hidden = true);
 
+    // Custom service
+    $("customServiceResult") && ($("customServiceResult").hidden = true);
+
     setStatus("");
   }
 
@@ -764,7 +1181,7 @@ I18N.en.coroplast = {
     if (viewBox) viewBox.hidden = false;
     updateCurrentModePill(mode);
 
-    const view = $("view-" + mode);
+    const view = isCustomMode(mode) ? $("view-custom-service") : $("view-" + mode);
     if (view) view.hidden = false;
 
     renderViewTitle(mode);
@@ -798,6 +1215,11 @@ I18N.en.coroplast = {
       updateCoroplastRateUI();
       $("coroplastResult") && ($("coroplastResult").hidden = true);
     }
+
+    if (isCustomMode(mode)) {
+      initCustomServiceView(mode);
+      $("customServiceResult") && ($("customServiceResult").hidden = true);
+    }
   }
 
   quoteSelect?.addEventListener("change", () => {
@@ -818,6 +1240,87 @@ I18N.en.coroplast = {
     applyTranslations();
   });
 
+  $("supplierSelect")?.addEventListener("change", () => {
+    const nextId = $("supplierSelect")?.value || "base";
+    changeSupplier(nextId);
+  });
+
+  $("addSupplierBtn")?.addEventListener("click", () => {
+    const raw = prompt(t("suppliers.addPrompt"), t("suppliers.addDefaultName"));
+    const name = (raw || "").trim();
+    if (!name) return;
+    if (suppliers.some((s) => s.name.toLowerCase() === name.toLowerCase())) {
+      return setStatus(t("suppliers.duplicateName"));
+    }
+    const newSupplier = { id: `sup_${Date.now()}`, name, customServices: [] };
+    suppliers.push(newSupplier);
+    saveSuppliers();
+    currentSupplierId = newSupplier.id;
+    localStorage.setItem(CURRENT_SUPPLIER_KEY, currentSupplierId);
+    renderSupplierSelect();
+    loadCurrentSupplierInputs();
+    buildQuoteOptions("");
+    resetAll();
+    setStatus(t("suppliers.addStatus", { name }));
+  });
+
+  $("saveSupplierNameBtn")?.addEventListener("click", () => {
+    const input = $("supplierNameInput");
+    const name = (input?.value || "").trim();
+    if (!name) return setStatus(t("suppliers.nameRequired"));
+    if (suppliers.some((s) => s.id !== currentSupplierId && s.name.toLowerCase() === name.toLowerCase())) {
+      return setStatus(t("suppliers.duplicateName"));
+    }
+    const supplier = getCurrentSupplier();
+    supplier.name = name;
+    saveSuppliers();
+    renderSupplierSelect();
+    renderSupplierSummary();
+    setStatus(t("suppliers.saveStatus", { name }));
+  });
+
+  $("deleteSupplierBtn")?.addEventListener("click", () => {
+    if (isBaseSupplier()) return setStatus(t("suppliers.deleteBlocked"));
+    if (!confirm(t("suppliers.deleteConfirm"))) return;
+    suppliers = suppliers.filter((s) => s.id !== currentSupplierId);
+    saveSuppliers();
+    currentSupplierId = "base";
+    localStorage.setItem(CURRENT_SUPPLIER_KEY, currentSupplierId);
+    renderSupplierSelect();
+    loadCurrentSupplierInputs();
+    buildQuoteOptions("");
+    resetAll();
+    setStatus(t("suppliers.deleteStatus"));
+  });
+
+  $("toggleSupplierPanelBtn")?.addEventListener("click", () => {
+    const panel = $("supplierPanel");
+    if (!panel) return;
+    panel.hidden = !panel.hidden;
+    setText("toggleSupplierPanelBtn", panel.hidden ? t("suppliers.manageBtn") : t("suppliers.manageBtnClose"));
+  });
+
+  $("addServiceBtn")?.addEventListener("click", () => {
+    const name = ($("serviceNameInput")?.value || "").trim();
+    if (!name) return setStatus(t("suppliers.serviceNameRequired"));
+    const service = {
+      id: `svc_${Date.now()}`,
+      name,
+      calcType: $("serviceTypeSelect")?.value || "area",
+      rate: $("serviceRateInput")?.value || "",
+      note: $("serviceNoteInput")?.value || ""
+    };
+    getCurrentSupplier().customServices.push(service);
+    saveSuppliers();
+    $("serviceNameInput") && ($("serviceNameInput").value = "");
+    $("serviceRateInput") && ($("serviceRateInput").value = "");
+    $("serviceNoteInput") && ($("serviceNoteInput").value = "");
+    $("serviceTypeSelect") && ($("serviceTypeSelect").value = "area");
+    renderSupplierServiceList();
+    buildQuoteOptions(quoteSelect?.value || "");
+    setStatus(t("suppliers.serviceAdded", { name }));
+  });
+
   // =========================
   // TINT MODULE
   // =========================
@@ -829,7 +1332,7 @@ I18N.en.coroplast = {
   }
 
   function tintCostPerFt2() {
-    const price = clampMin(safeNum($("rollPrice"), 350), 0);
+    const price = clampMin(safeNum($("rollPrice"), 0), 0);
     const area = tintBaseAreaFt2();
     return area > 0 ? (price / area) : 0;
   }
@@ -849,6 +1352,8 @@ I18N.en.coroplast = {
   $("rollWidthIn")?.addEventListener("change", renderTintBaseSummary);
   $("rollPrice")?.addEventListener("input", renderTintBaseSummary);
   $("rollPrice")?.addEventListener("change", renderTintBaseSummary);
+  $("rollWidthIn")?.addEventListener("input", () => setCurrentStored("tint_rollWidth", $("rollWidthIn")?.value || "60"));
+  $("rollPrice")?.addEventListener("input", () => setCurrentStored("tint_rollPrice", $("rollPrice")?.value || ""));
 
   $("tintMethod")?.addEventListener("change", () => {
     const v = $("tintMethod").value;
@@ -883,7 +1388,7 @@ I18N.en.coroplast = {
     $("useNotes").innerHTML = t("tint.useNotesHtml", {
       rollW: safeNum($("rollWidthIn"), 60),
       baseFt: BASE_TINT_LENGTH_FT,
-      rollPrice: money(safeNum($("rollPrice"), 350)),
+      rollPrice: money(safeNum($("rollPrice"), 0)),
       cpp: money(cpp),
       useW: wIn,
       shownLen,
@@ -971,7 +1476,7 @@ I18N.en.coroplast = {
     $("winNotes").innerHTML = t("tint.winsNotesHtml", {
       rollW,
       baseFt: BASE_TINT_LENGTH_FT,
-      rollPrice: money(safeNum($("rollPrice"), 350)),
+      rollPrice: money(safeNum($("rollPrice"), 0)),
       cpp: money(cpp),
       lines: escapeHtml(lines.join("\n")),
       totalIn: totalLinearIn.toFixed(2),
@@ -995,22 +1500,41 @@ I18N.en.coroplast = {
   const printType = $("printType");
   const printRate = $("printRate");
 
-  function updatePrintRateUI() {
+  function getSupplierPrintRate(key) {
+    const saved = getCurrentStored(`print_rate_${key}`);
+    if (saved != null && saved !== "") return Number(saved);
+    return isBaseSupplier() ? PRINT_RATES[key] : null;
+  }
+
+  function updatePrintRateUI(force = false) {
     const key = printType?.value || "vinyl_basic";
-    const rate = PRINT_RATES[key];
+    const rate = getSupplierPrintRate(key);
     if (!printRate) return;
-    printRate.value = (rate != null) ? `${money(rate)} / ft²` : "—";
+    if (force || document.activeElement !== printRate) {
+      printRate.value = rate != null && Number.isFinite(Number(rate)) ? Number(rate).toFixed(2) : "";
+    }
+  }
+
+  function saveCurrentPrintRate() {
+    const key = printType?.value || "vinyl_basic";
+    const raw = printRate?.value || "";
+    setCurrentStored(`print_rate_${key}`, raw);
   }
 
   printType?.addEventListener("change", () => {
-    updatePrintRateUI();
+    updatePrintRateUI(true);
+    $("printResult") && ($("printResult").hidden = true);
+  });
+
+  printRate?.addEventListener("input", () => {
+    saveCurrentPrintRate();
     $("printResult") && ($("printResult").hidden = true);
   });
 
   $("calcPrint")?.addEventListener("click", () => {
     const key = printType?.value || "vinyl_basic";
-    const rate = PRINT_RATES[key];
-    if (rate == null) return setStatusKey("status.selectPrintType");
+    const rate = clampMin(Number(printRate?.value || 0), 0);
+    if (rate <= 0) return setStatus(t("suppliers.printRateMissing"));
     setStatus("");
 
     const w = clampMin(safeNum($("printW"), 0), 0.01);
@@ -1030,7 +1554,7 @@ I18N.en.coroplast = {
     $("printAreaTotal").textContent = `${areaTotal.toFixed(2)} ft²`;
     $("printCost").textContent = money(cost);
 
-    const typeLabel = printType.options[printType.selectedIndex]?.textContent || "—";
+    const typeLabel = printType.options[printType.selectedIndex]?.textContent || key;
     $("printNotes").innerHTML = t("printing.notesHtml", {
       type: escapeHtml(typeLabel),
       w,
@@ -1073,7 +1597,7 @@ I18N.en.coroplast = {
   ];
 
   function lsKey(prefix, source, rollId) {
-    return `nj_${prefix}_${source}_${rollId}`;
+    return supplierStorageKey(`${prefix}_${source}_${rollId}`);
   }
 
   function fillSelect(selectEl, items, defaultId) {
@@ -1159,12 +1683,10 @@ I18N.en.coroplast = {
     fillSelect($("oraRoll"), VINYL_ROLLS, $("oraRoll")?.value || "v_24_50");
     fillSelect($("tapeRoll"), TAPE_ROLLS, $("tapeRoll")?.value || "t_24_100");
 
-    // Defaults “material types” (por ahora solo 1)
     if ($("vinylType") && !$("vinylType").value) $("vinylType").value = "orafol651";
     if ($("tapeType") && !$("tapeType").value) $("tapeType").value = "rtape4075rla";
   }
 
-  // Events decals
   ["decalW","decalH","decalQty"].forEach(id => {
     $(id)?.addEventListener("input", () => {
       updateDecalAreasUI();
@@ -1200,7 +1722,7 @@ I18N.en.coroplast = {
   });
 
   $("shipCost")?.addEventListener("input", () => {
-    localStorage.setItem("nj_shipCost", $("shipCost").value || "0");
+    setCurrentStored("ship_cost", $("shipCost").value || "0");
     $("decalsResult") && ($("decalsResult").hidden = true);
   });
 
@@ -1262,7 +1784,6 @@ I18N.en.coroplast = {
       `${noteShip}<br>` +
       t("decals.totalEstimated", { total: money(total) });
   });
-
 
   // =========================
   // COROPLAST PRINTING MODULE
@@ -1353,12 +1874,21 @@ I18N.en.coroplast = {
     return COROPLAST_RATE_MAP[resolution]?.[sides] ?? 0;
   }
 
+  function getSupplierCoroplastRate() {
+    const sides = $("coroplastSides")?.value || "1";
+    const resolution = $("coroplastResolution")?.value || "360";
+    const saved = getCurrentStored(`coroplast_rate_${resolution}_${sides}`);
+    if (saved != null && saved !== "") return Number(saved);
+    return isBaseSupplier() ? getCoroplastBaseRate() : null;
+  }
+
   function updateCoroplastRateUI(resetValue = false) {
     const baseRate = getCoroplastBaseRate();
+    const currentRate = getSupplierCoroplastRate();
     const input = $("coroplastRate");
     const info = $("coroplastRateInfo");
-    if (input && (resetValue || !input.value || Number(input.value) <= 0)) {
-      input.value = baseRate ? baseRate.toFixed(2) : "";
+    if (input && (resetValue || document.activeElement !== input)) {
+      input.value = currentRate != null && Number.isFinite(Number(currentRate)) ? Number(currentRate).toFixed(2) : "";
     }
     if (info) {
       info.innerHTML = t("coroplast.rateInfoHtml", { rate: money(baseRate) });
@@ -1398,6 +1928,9 @@ I18N.en.coroplast = {
     $("coroplastResult") && ($("coroplastResult").hidden = true);
   });
   $("coroplastRate")?.addEventListener("input", () => {
+    const sides = $("coroplastSides")?.value || "1";
+    const resolution = $("coroplastResolution")?.value || "360";
+    setCurrentStored(`coroplast_rate_${resolution}_${sides}`, $("coroplastRate")?.value || "");
     $("coroplastResult") && ($("coroplastResult").hidden = true);
   });
   $("coroplastQty")?.addEventListener("input", () => {
@@ -1432,7 +1965,7 @@ I18N.en.coroplast = {
     if (w <= 0 || h <= 0) return setStatusKey("status.coroplastSize");
 
     const rate = clampMin(safeNum($("coroplastRate"), 0), 0);
-    if (rate <= 0) return setStatusKey("status.coroplastRate");
+    if (rate <= 0) return setStatus(t("suppliers.coroplastRateMissing"));
 
     setStatus("");
 
@@ -1468,18 +2001,124 @@ I18N.en.coroplast = {
     });
   });
 
+  // =========================
+  // CUSTOM SERVICE MODULE
+  // =========================
+  function getActiveCustomService() {
+    return getCustomServiceByMode(quoteSelect?.value || "");
+  }
+
+  function updateCustomServiceUi(service) {
+    const type = service?.calcType || "area";
+    if ($("customAreaRow")) $("customAreaRow").hidden = !(type === "area");
+    if ($("customAreaUnitRow")) $("customAreaUnitRow").hidden = !(type === "area");
+    if ($("customLinearRow")) $("customLinearRow").hidden = !(type === "linear");
+    const hintMap = {
+      area: t("customService.typeHintArea"),
+      piece: t("customService.typeHintPiece"),
+      linear: t("customService.typeHintLinear"),
+      fixed: t("customService.typeHintFixed")
+    };
+    setText("customTypeHint", hintMap[type] || hintMap.area);
+  }
+
+  function initCustomServiceView(mode) {
+    const service = getCustomServiceByMode(mode);
+    if (!service) return;
+    setText("customServiceTitle", service.name || t("customService.titleFallback"));
+    setHtml("customServiceIntro", t("customService.introHtml", {
+      name: escapeHtml(service.name || t("customService.titleFallback")),
+      type: escapeHtml(getServiceTypeLabel(service.calcType)),
+      note: escapeHtml(service.note || "—")
+    }));
+    if ($("customRate")) $("customRate").value = service.rate || "";
+    updateCustomServiceUi(service);
+  }
+
+  function saveActiveCustomServiceRate() {
+    const service = getActiveCustomService();
+    if (!service) return;
+    service.rate = $("customRate")?.value || "";
+    saveSuppliers();
+    renderSupplierServiceList();
+  }
+
+  $("customRate")?.addEventListener("input", () => {
+    saveActiveCustomServiceRate();
+    $("customServiceResult") && ($("customServiceResult").hidden = true);
+  });
+  ["customQty","customW","customH","customLength"].forEach((id) => {
+    $(id)?.addEventListener("input", () => {
+      $("customServiceResult") && ($("customServiceResult").hidden = true);
+    });
+  });
+  ["customAreaUnit","customUnit"].forEach((id) => {
+    $(id)?.addEventListener("change", () => {
+      $("customServiceResult") && ($("customServiceResult").hidden = true);
+    });
+  });
+
+  $("calcCustomService")?.addEventListener("click", () => {
+    const service = getActiveCustomService();
+    if (!service) return;
+
+    const rate = clampMin(safeNum($("customRate"), 0), 0);
+    if (rate <= 0) return setStatus(t("customService.missingRate"));
+
+    const qty = clampMin(Math.floor(safeNum($("customQty"), 1)), 1);
+    const type = service.calcType || "area";
+    let measureText = "—";
+    let unitCost = 0;
+    let total = 0;
+    let notes = "";
+
+    if (type === "area") {
+      const w = clampMin(safeNum($("customW"), 0), 0.01);
+      const h = clampMin(safeNum($("customH"), 0), 0.01);
+      const unit = $("customAreaUnit")?.value || "in";
+      if (w <= 0 || h <= 0) return setStatus(t("customService.missingMeasure"));
+      const measure = lengthToFeet(w, unit) * lengthToFeet(h, unit);
+      measureText = `${measure.toFixed(4)} ${t("customService.areaMeasureSuffix")}`;
+      unitCost = measure * rate;
+      total = unitCost * qty;
+      notes = t("customService.areaNotes", { w, h, unit, measure: measureText, rate: money(rate), unitCost: money(unitCost), qty, total: money(total) });
+    } else if (type === "linear") {
+      const length = clampMin(safeNum($("customLength"), 0), 0.01);
+      const unit = $("customUnit")?.value || "ft";
+      if (length <= 0) return setStatus(t("customService.missingMeasure"));
+      const measure = lengthToFeet(length, unit);
+      measureText = `${measure.toFixed(2)} ${t("customService.linearMeasureSuffix")}`;
+      unitCost = measure * rate;
+      total = unitCost * qty;
+      notes = t("customService.linearNotes", { length, unit, measure: measureText, rate: money(rate), unitCost: money(unitCost), qty, total: money(total) });
+    } else if (type === "piece") {
+      measureText = t("customService.pieceMeasure");
+      unitCost = rate;
+      total = unitCost * qty;
+      notes = t("customService.pieceNotes", { rate: money(rate), qty, total: money(total) });
+    } else {
+      measureText = t("customService.fixedMeasure");
+      unitCost = rate;
+      total = unitCost * qty;
+      notes = t("customService.fixedNotes", { rate: money(rate), qty, total: money(total) });
+    }
+
+    setStatus("");
+    $("customServiceResult").hidden = false;
+    $("customMeasureValue").textContent = measureText;
+    $("customRateValue").textContent = money(rate);
+    $("customQtyValue").textContent = String(qty);
+    $("customUnitCostValue").textContent = money(unitCost);
+    $("customTotalCostValue").textContent = money(total);
+    $("customTypeValue").textContent = getServiceTypeLabel(type);
+    $("customServiceNotes").innerHTML = notes;
+  });
+
   // ===== INIT =====
   resetAll();
-  renderTintBaseSummary();
   ensureDefaultWin();
-  updatePrintRateUI();
-
-  const savedShip = localStorage.getItem("nj_shipCost");
-  if ($("shipCost") && savedShip != null) $("shipCost").value = savedShip;
-
   initDecalsUI();
-  updateDecalAreasUI();
-  updateDecalsCPPUI();
   initCoroplastUI();
+  loadCurrentSupplierInputs();
   applyTranslations();
 });

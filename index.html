@@ -21,6 +21,68 @@
 
 <div class="notice" hidden="" id="statusBar"></div>
 </header>
+
+<!-- SUPPLIERS -->
+<section class="card">
+  <div class="titleRow"><b id="suppliersCardTitle">Proveedores</b></div>
+  <div class="row">
+    <div>
+      <label id="supplierSelectLabel">Proveedor activo</label>
+      <select id="supplierSelect"></select>
+    </div>
+    <div>
+      <label id="supplierNameLabel">Nombre del proveedor</label>
+      <input id="supplierNameInput" type="text" placeholder="Ej: Grimco" />
+    </div>
+  </div>
+  <div class="btnRow">
+    <button class="primary" id="addSupplierBtn" type="button">+ Agregar proveedor</button>
+    <button class="ghost" id="saveSupplierNameBtn" type="button">Guardar nombre</button>
+    <button class="ghost" id="toggleSupplierPanelBtn" type="button">Administrar proveedor</button>
+    <button class="ghost dangerBtn" id="deleteSupplierBtn" type="button">Eliminar proveedor</button>
+  </div>
+  <div class="materialBox" id="supplierSummaryBox"></div>
+  <div class="supplierPanel" id="supplierPanel" hidden>
+    <div class="subTitle" id="supplierServicesTitle">Servicios extra del proveedor</div>
+    <div class="row">
+      <div>
+        <label id="serviceNameLabel">Nombre del servicio</label>
+        <input id="serviceNameInput" type="text" placeholder="Ej: PVC Printing" />
+      </div>
+      <div>
+        <label id="serviceTypeLabel">Tipo de mini estimador</label>
+        <select id="serviceTypeSelect">
+          <option id="serviceTypeArea" value="area">Por ft²</option>
+          <option id="serviceTypePiece" value="piece">Por pieza</option>
+          <option id="serviceTypeLinear" value="linear">Por pie lineal</option>
+          <option id="serviceTypeFixed" value="fixed">Precio fijo</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label id="serviceRateLabel">Tarifa base (USD)</label>
+        <input id="serviceRateInput" type="number" step="0.01" placeholder="Ej: 3.50" />
+      </div>
+      <div>
+        <label id="serviceNoteLabel">Nota</label>
+        <input id="serviceNoteInput" type="text" placeholder="Opcional" />
+      </div>
+    </div>
+    <div class="btnRow">
+      <button class="primary" id="addServiceBtn" type="button">+ Agregar servicio</button>
+    </div>
+    <div class="materialBox">
+      <div class="subTitle" id="supplierServiceListTitle">Lista de servicios extra</div>
+      <div class="serviceList" id="supplierServiceList"></div>
+    </div>
+    <div class="materialBox">
+      <div class="subTitle" id="supplierRatesHelpTitle">Cómo guardar precios</div>
+      <div class="notes" id="supplierRatesHelpText"></div>
+    </div>
+  </div>
+</section>
+
 <!-- SELECTOR PRINCIPAL -->
 <section class="card">
 <h2 id="mainQuestionTitle">¿Qué vas a calcular?</h2>
@@ -181,7 +243,7 @@
 </div>
 <div>
 <label id="printRateLabel">Precio seleccionado (USD / ft²)</label>
-<input id="printRate" readonly="" type="text" value="—"/>
+<input id="printRate" type="number" step="0.01" value="" placeholder=""/>
 </div>
 </div>
 <div class="row">
@@ -445,6 +507,72 @@
 <div class="notes" id="coroplastNotes"></div>
 </div>
 </div>
+
+<!-- =======================
+           CUSTOM SERVICE
+           ======================= -->
+<div class="view" hidden="" id="view-custom-service">
+<div class="subTitle" id="customServiceTitle">Servicio extra</div>
+<div class="materialBox" id="customServiceIntro"></div>
+<div class="row">
+<div>
+<label id="customRateLabel">Tarifa (USD)</label>
+<input id="customRate" step="0.01" type="number" value=""/>
+</div>
+<div>
+<label id="customQtyLabel">Cantidad</label>
+<input id="customQty" step="1" type="number" value="1"/>
+</div>
+</div>
+<div class="row" id="customAreaRow">
+<div>
+<label id="customWidthLabel">Ancho</label>
+<input id="customW" step="0.01" type="number" value="24"/>
+</div>
+<div>
+<label id="customHeightLabel">Largo</label>
+<input id="customH" step="0.01" type="number" value="18"/>
+</div>
+</div>
+<div class="row" id="customAreaUnitRow">
+<div>
+<label id="customAreaUnitLabel">Unidad</label>
+<select id="customAreaUnit">
+<option id="customAreaUnitIn" selected="" value="in">Pulgadas (in)</option>
+<option id="customAreaUnitFt" value="ft">Pies (ft)</option>
+</select>
+</div>
+<div class="hint"><span id="customTypeHint">La medida calculada depende del tipo de servicio.</span></div>
+</div>
+<div class="row" hidden="" id="customLinearRow">
+<div>
+<label id="customLengthLabel">Largo</label>
+<input id="customLength" step="0.01" type="number" value="10"/>
+</div>
+<div>
+<label id="customUnitLabel">Unidad</label>
+<select id="customUnit">
+<option id="customUnitIn" value="in">Pulgadas (in)</option>
+<option id="customUnitFt" selected="" value="ft">Pies (ft)</option>
+</select>
+</div>
+</div>
+<button class="primary" id="calcCustomService">Calcular servicio</button>
+<div class="result" hidden="" id="customServiceResult">
+<div class="kpi">
+<div class="k"><div class="t" id="customMeasureLabel">Medida calculada</div><div class="v" id="customMeasureValue">—</div></div>
+<div class="k"><div class="t" id="customRateResultLabel">Tarifa</div><div class="v" id="customRateValue">—</div></div>
+<div class="k"><div class="t" id="customQtyResultLabel">Cantidad</div><div class="v" id="customQtyValue">—</div></div>
+</div>
+<div class="kpi" style="margin-top:10px;">
+<div class="k"><div class="t" id="customUnitCostLabel">Costo unitario</div><div class="v" id="customUnitCostValue">—</div></div>
+<div class="k"><div class="t" id="customTotalCostLabel">Costo total</div><div class="v" id="customTotalCostValue">—</div></div>
+<div class="k"><div class="t" id="customTypeResultLabel">Tipo</div><div class="v" id="customTypeValue">—</div></div>
+</div>
+<div class="notes" id="customServiceNotes"></div>
+</div>
+</div>
+
 </section>
 </div>
 </body>
